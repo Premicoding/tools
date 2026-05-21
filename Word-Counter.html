@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Discover why a word counter tool is essential for writers, SEO experts, and students. Learn how to count words, characters, sentences, and paragraphs effectively to improve content quality and search rankings.">
+    <meta name="keywords" content="word counter, character counter, sentence counter, paragraph counter, SEO tool, writing tool, word count tool, online word counter">
+    <meta name="author" content="Content Team">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Word Counter Tool | Accessible & Fixed</title>
+    <style>
+        /* RESET & BASE STYLES (keeping original layout, only fixing contrast & heading hierarchy) */
+        #QQA {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f2f5;
+            padding: 0;
+            width: 100%;
+        }
+
+        #QQA .container {
+            background-color: white;
+            padding: 0 20px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width:100%;
+            max-width:800px;
+            box-shadow: 1px 1px 5px red, -1px -1px 5px blue;
+        }
+
+        #QQA .container h1 {
+            text-align: center;
+            /* FIXED CONTRAST: changed from white to dark color for sufficient ratio against white bg */
+            color: #111111;
+            margin-bottom: 10px;
+            -webkit-text-stroke: 0.3px red;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), -2px -2px 4px rgba(255, 0, 0, 0.5), 0px 0px 10px rgba(0, 255, 0, 0.8);
+            font-weight: 900;
+        }
+
+        /* Remove problematic white foreground from old rule — improved contrast */
+        /* This ensures no overriding conflict with the fixed color above */
+        #QQA :is(.container) :is(h1, .content-box) {
+            /* only keep text-shadow, but NO white color to ruin contrast */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), -2px -2px 4px rgba(255, 0, 0, 0.5), 0px 0px 10px rgba(0, 255, 0, 0.8);
+            font-weight: 900;
+            /* color property removed here — inherits from .container h1 rule above (ensures dark text) */
+        }
+
+        /* TEXTAREA styling */
+        .container #text-input {
+            width: 100%;
+            height: 200px;
+            padding: 5px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            resize: vertical;
+            font-size: 16px;
+            margin-bottom: 20px;
+            background: white;
+            color: #1e1e2a;
+        }
+
+        #text-input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        /* COUNTERS LAYOUT */
+        .container .counters {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .counters .counter-box {
+            padding: 10px 2px;
+            border-radius: 5px;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            color: white;
+            font-weight: 900;
+            background: #B22222;    /* high contrast red/firebrick */
+            border: 1px solid cyan;
+        }
+
+        .counters .counter-box h2 {
+            font-size: 18px;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        .counters .counter-box span {
+            font-size: 30px;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+
+        /* utility reset for heading+span inside counter box */
+        .counter-box :is(h2, span) {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* responsive design (unchanged except adjust any if needed) */
+        @media (max-width: 480px) {
+            #QQA .container {
+                padding: 15px;
+            }
+            .counters .counter-box {
+                min-width: 100%;
+            }
+        }
+
+        /* additional small touch: ensure all placeholder text contrast fine (default is ok) */
+        ::placeholder {
+            color: #5a5a6e;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <div id="QQA">
+        <div class="container">
+            <h1>Word Counter</h1>
+            <textarea autofocus id="text-input" placeholder="Start typing or paste your text here..."></textarea>
+            <div class="counters">
+                <!-- FIXED heading hierarchy: h1 > h2 (previously h3) — sequential descending order -->
+                <div class="counter-box">
+                    <h2>Words</h2>
+                    <span id="word-count">0</span>
+                </div>
+                <div class="counter-box">
+                    <h2>Characters</h2>
+                    <span id="character-count">0</span>
+                </div>
+                <div class="counter-box">
+                    <h2>Sentences</h2>
+                    <span id="sentence-count">0</span>
+                </div>
+                <div class="counter-box">
+                    <h2>Paragraphs</h2>
+                    <span id="paragraph-count">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="RTY">
+   <h1>
+Word Counter Tool – The Best Free Online Word Counting Tool
+</h1>
+<p>
+In today’s digital world, <strong>content writing</strong>, <strong>blogging</strong>, 
+<strong>SEO</strong>, and <strong>academic writing</strong> have become more important than ever. 
+A powerful <strong>Word Counter Tool</strong> helps users instantly analyze text and improve writing quality.
+</p>
+<!-- What is Word Counter -->
+<h2>
+What is a Word Counter Tool?
+</h2>
+
+<p>
+A <strong>Word Counter Tool</strong> is an online utility that calculates and displays:
+</p>
+<ul>
+<li><strong>Total Words</strong></li>
+<li><strong>Character Count</strong></li>
+<li><strong>Sentence Count</strong></li>
+<li><strong>Paragraph Count</strong></li>
+<li><strong>Reading Time</strong></li>
+<li><strong>Keyword Density</strong></li>
+</ul>
+
+<p>
+This tool is widely used by:
+<strong>Bloggers, Students, Content Writers, SEO Experts, Copywriters,</strong> and 
+<strong>Digital Marketers.</strong>
+</p>
+<!-- How it works -->
+<h2>
+How Does a Word Counter Tool Work?
+</h2>
+<p>
+The tool automatically analyzes your text in real time and instantly displays accurate statistics.
+</p>
+
+<h3>
+Simple Working Process
+</h3>
+<ol>
+<li>Paste or type your content into the text box</li>
+<li>The tool instantly scans the content</li>
+<li>Word and character counts update automatically</li>
+<li>Users can optimize their content easily</li>
+</ol>
+<!-- Features -->
+<h2>
+Top Features of a Word Counter Tool
+</h2>
+<div>
+<h3>✅ Real-Time Word Counting</h3>
+<p>
+The tool updates the total word count instantly while typing.
+</p>
+<h3>✅ Character Counter</h3>
+<p>
+Counts all characters including spaces and special symbols.
+</p>
+
+<h3>✅ Sentence & Paragraph Counter</h3>
+<p>
+Helps users improve content structure and readability.
+</p>
+
+<h3>✅ Reading Time Estimator</h3>
+<p>
+Shows the estimated time needed to read the content.
+</p>
+
+<h3>✅ SEO Optimization Features</h3>
+<p>
+Advanced tools may include readability analysis and keyword density checking.
+</p>
+
+</div>
+
+<!-- Benefits -->
+<h2>
+Benefits of Using a Word Counter Tool
+</h2>
+
+<p>
+Using a <strong>Word Counter Tool</strong> can improve your writing productivity and help maintain proper content length.
+</p>
+
+<ul>
+<li>✔ Saves Time</li>
+<li>✔ Improves Writing Accuracy</li>
+<li>✔ Helps in SEO Optimization</li>
+<li>✔ Maintains Word Limits</li>
+<li>✔ Enhances Readability</li>
+<li>✔ Useful for Social Media Character Limits</li>
+<li>✔ Creates Professional Content</li>
+</ul>
+
+<!-- Table -->
+<h2>
+Common Uses of Word Counter Tools
+</h2>
+
+<table style="width:100%; border-collapse:collapse; margin-top:20px; font-size:17px;">
+<tr style="background:#2563eb; color:#fff;">
+<th style="padding:15px; border:1px solid #ddd;">Usage</th>
+<th style="padding:15px; border:1px solid #ddd;">Purpose</th>
+</tr>
+<tr>
+<td style="padding:15px; border:1px solid #ddd;"><strong>Blogging</strong></td>
+<td style="padding:15px; border:1px solid #ddd;">Writing SEO-friendly articles</td>
+</tr>
+
+<tr style="background:#f8fafc;">
+<td style="padding:15px; border:1px solid #ddd;"><strong>Education</strong></td>
+<td style="padding:15px; border:1px solid #ddd;">Checking assignment word limits</td>
+</tr>
+<tr>
+<td style="padding:15px; border:1px solid #ddd;"><strong>SEO</strong></td>
+<td style="padding:15px; border:1px solid #ddd;">Keyword and readability optimization</td>
+</tr>
+
+<tr style="background:#f8fafc;">
+<td style="padding:15px; border:1px solid #ddd;"><strong>Social Media</strong></td>
+<td style="padding:15px; border:1px solid #ddd;">Managing character limits</td>
+</tr>
+
+<tr>
+<td style="padding:15px; border:1px solid #ddd;"><strong>Content Writing</strong></td>
+<td style="padding:15px; border:1px solid #ddd;">Creating professional-quality content</td>
+</tr>
+
+</table>
+
+<!-- SEO -->
+<h2>
+Why is a Word Counter Tool Important for SEO?
+</h2>
+
+<p>
+In <strong>Search Engine Optimization (SEO)</strong>, content quality and keyword placement are extremely important.
+</p>
+
+<p>
+A good <strong>Word Counter Tool</strong> helps users:
+</p>
+
+<ul>
+<li>Maintain ideal article length</li>
+<li>Avoid keyword stuffing</li>
+<li>Improve readability score</li>
+<li>Optimize content structure</li>
+<li>Create search-engine-friendly articles</li>
+</ul>
+
+<p>
+Google prefers high-quality, informative, and readable content. This makes word analysis tools very important for writers and marketers.
+</p>
+<!-- Best Features -->
+<h2>
+Features of the Best Word Counter Tool
+</h2>
+
+<ul>
+<li><strong>Fast Performance</strong></li>
+<li><strong>Mobile-Friendly Interface</strong></li>
+<li><strong>Accurate Results</strong></li>
+<li><strong>Simple User Interface</strong></li>
+<li><strong>Real-Time Analysis</strong></li>
+<li><strong>Free to Use</strong></li>
+<li><strong>No Registration Required</strong></li>
+</ul>
+
+<!-- Best Practices -->
+<h2>
+Best Practices for Writing Better Content
+</h2>
+<ol>
+<li>Use short and clear paragraphs</li>
+<li>Add proper heading structure</li>
+<li>Avoid keyword stuffing</li>
+<li>Maintain readability</li>
+<li>Use engaging and simple language</li>
+<li>Optimize content for mobile users</li>
+<li>Use relevant keywords naturally</li>
+</ol>
+
+<!-- Conclusion -->
+<h2>
+Conclusion
+</h2>
+
+<p>
+A <strong>Word Counter Tool</strong> is an essential online utility for students, bloggers, SEO experts, and professional writers.
+</p>
+
+<p>
+It helps improve writing quality, optimize content for search engines, maintain word limits, and save time.
+</p>
+
+<p>
+If your website provides a <strong>fast</strong>, <strong>accurate</strong>, and 
+<strong>user-friendly Word Counter Tool</strong>, it can become a valuable resource for thousands of users worldwide.
+</p> 
+</main>
+</div>
+<script>
+    (function() {
+        // DOM elements
+        const textInput = document.getElementById('text-input');
+        const wordCountSpan = document.getElementById('word-count');
+        const characterCountSpan = document.getElementById('character-count');
+        const sentenceCountSpan = document.getElementById('sentence-count');
+        const paragraphCountSpan = document.getElementById('paragraph-count');
+
+        // Core update function: counts words, characters, sentences, paragraphs
+        function updateCounts() {
+            const rawText = textInput.value;
+            const text = rawText;          // preserve for character count (including spaces)
+            const trimmedText = rawText.trim();
+            
+            // --- WORD COUNT (robust splitting, same as original logic) ---
+            let wordsArray = [];
+            if (trimmedText.length > 0) {
+                wordsArray = trimmedText.split(/\s+/).filter(word => word.length > 0);
+            }
+            const wordCount = wordsArray.length;
+            wordCountSpan.textContent = wordCount;
+
+            // --- CHARACTER COUNT (including spaces, newlines) ---
+            characterCountSpan.textContent = text.length;
+
+            // --- SENTENCE COUNT (using punctuation . ! ? as delimiters) ---
+            let sentenceArray = [];
+            if (trimmedText.length > 0) {
+                // Split on sentence-ending punctuation: . ! ?  followed by optional whitespace
+                sentenceArray = trimmedText.split(/[.!?]+/).filter(sentence => sentence.trim().length > 0);
+            }
+            const sentenceCount = sentenceArray.length;
+            sentenceCountSpan.textContent = sentenceCount;
+
+            // --- PARAGRAPH COUNT (split by newline, ignore empty paragraphs) ---
+            let paragraphArray = [];
+            if (rawText.length > 0) {
+                paragraphArray = rawText.split(/\r?\n/).filter(para => para.trim().length > 0);
+            }
+            paragraphCountSpan.textContent = paragraphArray.length;
+        }
+
+        // Event listener
+        textInput.addEventListener('input', updateCounts);
+        
+        // Initial update on page load
+        updateCounts();
+    })();
+</script>
+</body>
+</html>
