@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="title" content="Deep Code Typer ">
+<meta name="description" content="Using this tool, we can automatically type HTML, CSS, and JavaScript code.">
+<meta name="keywords" content="Deep Code Typer, Automatic Code Typing,pest code typing,live html CSS javascript code, html CSS javascript live result,">
+<meta name="robots" content="index, follow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="English">
+    <meta charset="UTF-8">
+    <meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport'/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>𝐃𝐞𝐞𝐩 𝐂𝐨𝐝𝐞 𝐓𝐲𝐩𝐞𝐫</title>
+    <style>
+*{box-sizing: border-box;
+  margin:0;
+  padding:0;}
+  body{background:linear-gradient(135deg, #0A0F1A 0%, #12172F 100%);font-family: 'Fira Code', 'Cascadia Code', 'SF Mono', 'JetBrains Mono', 'Segoe UI', monospace;
+ min-height: 100vh;
+ padding:2px;}
+        .editor-dashboard {
+            max-width: 1400px;
+            width: 100%;
+            background: #080B14;
+            border-radius: 1.8rem;
+            box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+            overflow:hidden;
+            display:flex;
+            flex-direction:column;}
+        /* Header area with title and badges */
+       .editor-dashboard .editor-header{
+            padding:2px 12px;
+            background:black;
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:space-between;
+            align-items: center;
+            gap:2px;
+            z-index:10;}
+       .editor-dashboard .pulse-dot{
+            width:10px;
+            height:10px;
+            background: #22c55e;
+            border-radius:50%;
+            outline:1px solid white;
+            box-shadow: 0 0 6px #22c55e;
+            animation: pulse-green 1.4s infinite;}
+        @keyframes pulse-green{
+            0%{opacity: 0.5; transform: scale(0.9);}
+            100%{ opacity: 1; transform: scale(1.2);}}
+
+        /* Language Selector Bar - BELOW the header (TriCode Lab) */
+     .editor-header button{
+            background:#1F253E;
+            border: none;
+            padding:3px 6px;
+            border-radius: 6px;
+            corner-shape:bevel;
+            font-family: inherit;
+            font-weight: 900;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color:white;
+            letter-spacing: 0.3px;}
+      .editor-dashboard .lang-btn.active {
+            background:#6C47FF;
+            color:white;
+            box-shadow: 0 0 14px rgba(108, 71, 255, 0.5);}
+
+ .editor-dashboard .lang-btn.html-btn.active { background:#A80000;color: white;}
+       .editor-dashboard .lang-btn.css-btn.active {background:#000061;color:#FFFFFF; }
+        .editor-dashboard .lang-btn.js-btn.active {background: #F7DF1E; color: #1E1E1E; box-shadow: 0 0 12px rgba(247,223,30,0.5);}
+
+        .editor-dashboard .lang-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);}
+        
+.editor-header button i{padding:0 4px;font-size:16px;}
+        /* PREVIEW PANE - ON TOP */
+       .editor-dashboard .preview-pane-top {
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 2px solid #2A2F48;
+            min-height: 45vh;
+            max-height: 55vh;
+            position: relative;}
+        
+      .preview-pane-top iframe {
+            width: 100%;
+            flex: 1;
+            border: none;
+            background: white;
+            min-height: 280px;}
+        
+        /* EDITOR SECTION */
+        .preview-pane-top .editor-section-bottom {
+            background: #07090F;
+           border-top: 1px solid #181E30;}
+       .editor-section-bottom .code-textarea{
+            width:100%;
+            height:42vh;
+            background: #01010A;
+            color: #EFF3FF;
+            font-family:'Fira Code', 'Cascadia Code', monospace;
+            font-size:clamp(0px, 2vw, 32px);
+            line-height:1.5;
+            padding:4px;
+            border-radius: 1.2rem;
+            border: 1px solid #2A2F48;
+            outline: none;
+            resize: vertical;
+            white-space: pre-wrap;
+            tab-size: 4;
+            caret-color: #A97CFF;
+        }
+
+       .editor-section-bottom .code-textarea:focus {
+            border-color: #8B6CFF;
+            border:none;
+        }
+
+         .editor-section-bottom .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+       .toolbar .button-group{
+            display: flex;
+            gap:10px;
+            flex-wrap:wrap;
+            padding-bottom:10px;
+            justify-content:center;}
+    .toolbar .button-group  button {
+            background: #1F253E;
+            border: none;
+            outline:1px solid white;
+            padding:6px 5px;
+            border-radius: 40px;
+            font-family:inherit;
+            font-weight: 900;
+            font-size: 0.8rem;
+            color: #EFF3FF;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items:center;
+            gap:4px;
+        }  
+
+         .toolbar .button-group button:hover {
+            background: #2F3760;
+            transform: translateY(-1px);
+        }
+
+        .toolbar .button-group .clear-btn {
+            background: #2A1E42;
+            color: #E2C7FF;
+        }
+         .toolbar .button-group .clear-btn:hover { background: #4A2C7A; }
+
+         .toolbar .button-group .fullpage-btn {
+            background: #1E3A4D;
+            color: #A5F0FF;
+        }
+        .toolbar .button-group .fullpage-btn:hover { background: #2A5775; }
+
+         .toolbar .button-group .codeview-btn {
+            background: #2D3A2F;
+            color: #C6FFB7;
+        }
+        .toolbar .button-group .codeview-btn:hover { background: #3F5A3F; }
+
+         .toolbar .button-group .force-btn {
+            background: #3D2E4A;
+            color: #E0BCFF;}
+        
+        .toolbar .status-msg {
+            font-size: 0.7rem;
+            color: #8A94C0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #0F1322;
+            padding: 4px 12px;
+            border-radius: 40px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.92);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+       .modal-content {
+            background: #0A0C18;
+            border-radius: 1.5rem;
+            width:100%;
+            height:100%;
+            max-width: 1300px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 30px 50px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .modal-header {
+            padding:0;
+            background: #11141f;
+            border-radius: 1.5rem 1.5rem 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #2A2F48;
+        }
+
+        .modal-header h3 {
+            color:white;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-modal {
+            background:blue;
+            border:1px groove white;
+            font-size:17px;
+            cursor:pointer;
+            color: white;
+            font-weight:900;
+            width:36px;
+            height:36px;
+            border-radius: 30px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            transition:0.2s;
+        }
+
+        .close-modal:hover {
+            background: #ff4757;
+            transform: scale(1.05);
+        }
+
+        .modal-body {
+            flex: 1;
+            padding:2px;
+            overflow: auto;
+            background: #fff;
+            border-radius: 0 0 1.2rem 1.2rem;
+        }
+
+        .modal-body iframe, .modal-body pre {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .modal-body pre {
+            background: #0A0C18;
+            color: #E2E8FF;
+            padding: 1rem;
+            overflow: auto;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+
+        @media (max-width: 780px) {
+            .code-textarea { height: 38vh; }
+            .preview-pane-top { min-height: 35vh; max-height: 40vh; }
+            .lang-btn { padding: 6px 18px; font-size: 0.75rem; }
+            .lang-bar { gap: 10px; }
+        }
+        .auto-typing-active {
+            border-left: 3px solid #B77CFF;
+            transition: 0.02s linear;
+        }
+      .PR,p:not(#premi){font-family: "Times New Roman", Times, serif;color:white;text-shadow:2px 2px 3px blue ,-1px 1px 1.5px red;}
+        /* Auto-scroll indicator pill */
+       
+    </style>
+</head>
+<body>
+<main>
+<div class="editor-dashboard">
+    <!-- Header: TriCode Lab title area -->
+    <header class="editor-header">
+            
+                <div class="pulse-dot"></div>
+                <button id="htmlOptionBtn" class="lang-btn html-btn active"> <i class="fab fa-html5 html-icon"></i>𝐇𝐓𝐌𝐋</button>
+        <button id="cssOptionBtn" class="lang-btn css-btn"> <i class="fab fa-css3-alt css-icon"></i>𝐂𝐒𝐒</button>
+        <button id="jsOptionBtn" class="lang-btn js-btn"><i class="fab fa-js-square js-icon"></i>𝐉𝐀𝐕𝐀𝐒𝐂𝐑𝐈𝐏𝐓</button>       
+    </header>
+
+    <!-- LIVE PREVIEW (top area) + auto-scroll indicator -->
+    <div class="preview-pane-top">
+        <iframe id="livePreviewFrame" title="Live Preview" sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-modals allow-downloads"></iframe>
+        <div class="scroll-status-indicator" id="scrollStatusIndicator"></div>
+    </div>
+
+    <!-- EDITOR SECTION: textarea + toolbar -->
+    <div class="editor-section-bottom">
+        <textarea id="codeEditor" class="code-textarea" placeholder="Paste Code"></textarea>
+        <div class="toolbar">
+            <div class="status-msg">
+                <span id="liveStatusIcon">🟢</span>
+                <span id="statusText">HTML ready — paste any code + auto-scroll preview</span>
+            </div>
+            <div class="button-group">
+                <button id="clearBtn" class="clear-btn">🧹𝐂𝐥𝐞𝐚𝐫 & 𝐑𝐞𝐬𝐞𝐭</button>
+                <button id="fullPagePreviewBtn" class="fullpage-btn">🖥️ 𝐅𝐮𝐥𝐥 𝐏𝐚𝐠𝐞 𝐏𝐫𝐞𝐯𝐢𝐞𝐰</button>
+                <button id="fullCodePreviewBtn" class="codeview-btn">📄 𝐅𝐮𝐥𝐥 𝐂𝐨𝐝𝐞 𝐏𝐫𝐞𝐯𝐢𝐞𝐰</button>
+                <button id="forcePreviewBtn" class="force-btn">🔄 𝐅𝐨𝐫𝐜𝐞 𝐑𝐞𝐟𝐫𝐞𝐬𝐡
+                </button>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<!-- Modals -->
+<div id="fullPageModal" class="modal"><div class="modal-content"><div class="modal-header"><h3>🖥️ 𝐅𝐮𝐥𝐥 𝐏𝐚𝐠𝐞 𝐏𝐫𝐞𝐯𝐢𝐞𝐰</h3><button class="close-modal" id="closeFullPageModal">✕</button></div><div class="modal-body"><iframe id="fullPageIframe"></iframe></div></div></div>
+<div id="codePreviewModal" class="modal"><div class="modal-content"><div class="modal-header"><h3>📄 𝐅𝐮𝐥𝐥 𝐂𝐨𝐝𝐞 𝐏𝐫𝐞𝐯𝐢𝐞𝐰</h3><button class="close-modal" id="closeCodeModal">✕</button></div><div class="modal-body"><pre id="codePreviewPre"></pre></div></div></div></main><hr>
+<h3 class="PR">What is the Deep Code Typer Tool?</h3>
+<p>Using this tool, we can automatically type HTML, CSS, and JavaScript code.</p>
+<h3 class="PR">How does the Deep Code Typer work?</h3>
+<p>In this web tool, when we paste any HTML, CSS, or JavaScript code, it starts typing automatically. Along with this, the result is shown live.</p>
+<h3 class="PR">Which programming languages can show live results in Deep Code Typer?</h3>
+<p>We can only see the results of HTML, CSS, and JavaScript code in this tool.
+<h3 class="PR">How to use the Deep Code Typer Tool?</h3>
+<p>Using this web tool is very easy. It has two sections:<br>
+<b style="color:hotpink;-webkit-text-stroke:.2px cyan;">1 The top section shows the result.<br>
+2 The bottom section is where the code is typed automatically.</b>
+When we paste the code in the bottom section, the result starts appearing in the top section. In this tool, we can select HTML, CSS, or JavaScript. We have provided three buttons in the header: HTML, CSS, and JavaScript. Whatever code we want to type automatically, we simply click the corresponding button to select it, then paste the code, and the automatic typing starts.</p>
+
+<h3 class="PR">Code Typer Benefits</h3>
+<p>We can use this web tool to understand the code along with its result by automatically typing pre-written code. Additionally, we can take screenshots or screen recordings and publish them on social media to help explain the code to others.</p>
+<h3 class="PR">Deep Code Typer Tool – Simple Information.</h3><p>
+In this web tool, you don’t have to sign up, nor does it cost any money. You can use this web tool for free. Important buttons have also been added to this web tool, which make it very helpful.</p><br>
+<footer><p id="premi"style="color:white;text-align:center; font-weight:900;">©𝟐𝟎𝟐𝟔 ♥️𝐃𝐞𝐞𝐩 𝐂𝐨𝐝𝐞 𝐓𝐲𝐩𝐞𝐫♥️</p></footer> 
+<script>
+    (function() {
+        // DOM elements
+        const editorTextarea = document.getElementById('codeEditor');
+        const previewFrame = document.getElementById('livePreviewFrame');
+        const htmlBtn = document.getElementById('htmlOptionBtn');
+        const cssBtn = document.getElementById('cssOptionBtn');
+        const jsBtn = document.getElementById('jsOptionBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const forcePreviewBtn = document.getElementById('forcePreviewBtn');
+        const fullPagePreviewBtn = document.getElementById('fullPagePreviewBtn');
+        const fullCodePreviewBtn = document.getElementById('fullCodePreviewBtn');
+        const statusTextSpan = document.getElementById('statusText');
+        const liveStatusIcon = document.getElementById('liveStatusIcon');
+        
+        // Modal elements
+        const fullPageModal = document.getElementById('fullPageModal');
+        const codePreviewModal = document.getElementById('codePreviewModal');
+        const fullPageIframe = document.getElementById('fullPageIframe');
+        const codePreviewPre = document.getElementById('codePreviewPre');
+        const closeFullPage = document.getElementById('closeFullPageModal');
+        const closeCodeModal = document.getElementById('closeCodeModal');
+        
+        // AUTO-SCROLL LOGIC: automatically scroll iframe to bottom when new content loads
+        // This ensures the preview scrolls down to reveal newly generated content
+        let scrollEnabled = true;
+        const scrollIndicator = document.getElementById('scrollStatusIndicator');
+        
+        function scrollPreviewToBottom() {
+            if (!scrollEnabled) return;
+            try {
+                const iframeWin = previewFrame.contentWindow;
+                const iframeDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+                if (iframeDoc && iframeDoc.body) {
+                    // scroll the iframe's window to the bottom (for height overflow)
+                    if (iframeWin) {
+                        const scrollHeight = iframeDoc.documentElement.scrollHeight || iframeDoc.body.scrollHeight;
+                        iframeWin.scrollTo({
+                            top: scrollHeight,
+                            behavior: 'smooth'
+                        });
+                    }
+                    // Also attempt to scroll inside the iframe's body element as fallback
+                    iframeDoc.body.scrollTop = iframeDoc.body.scrollHeight;
+                }
+                // Update indicator flash effect
+                if (scrollIndicator) {
+                    scrollIndicator.style.opacity = '0.7';
+                    setTimeout(() => { if(scrollIndicator) scrollIndicator.style.opacity = '1'; }, 200);
+                }
+            } catch(e) { /* cross-origin sometimes but sandbox allows */ }
+        }
+        
+        // Enhanced render: after writing to iframe, we queue auto-scroll
+        function renderLivePreviewWithScroll() {
+            const fullDocument = buildCombinedPreview();
+            try {
+                const iframeDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+                iframeDoc.open();
+                iframeDoc.write(fullDocument);
+                iframeDoc.close();
+                // After DOM loads, scroll to bottom (watch for images/fonts but use microtask)
+                setTimeout(() => {
+                    scrollPreviewToBottom();
+                    // Also attach a MutationObserver inside iframe? but simple scroll after render works.
+                    // Additionally, ensure that any dynamic content later triggers scroll.
+                    const iframeWin = previewFrame.contentWindow;
+                    if (iframeWin && iframeWin.document) {
+                        // Listen to iframe load event for extra safety
+                        iframeWin.document.addEventListener('DOMContentLoaded', function onLoad() {
+                            scrollPreviewToBottom();
+                        });
+                    }
+                }, 40);
+            } catch(e) { console.warn(e); }
+        }
+        
+        let storedCode = {
+            html: ``,
+            css: ``,
+            js: ``,
+        };
+        
+        let currentLanguage = 'html';
+        let isTypingActive = false;
+        let typingTimeoutId = null;
+        let currentTypingIndex = 0;
+        let targetCodeString = "";
+        
+      
+        function buildCombinedPreview() {
+            const htmlCode = storedCode.html;
+            const cssCode = storedCode.css;
+            const jsCode = storedCode.js;
+            return `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TriCode Live Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', monospace;
+            background: #ffffff;
+            min-height: 100vh;
+        }
+       
+        ${cssCode}
+    </style>
+</head>
+<body>
+    ${htmlCode}
+</body>
+</html>`;
+        }
+        
+        function renderLivePreview() {
+            const fullDocument = buildCombinedPreview();
+            try {
+                const iframeDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+                iframeDoc.open();
+                iframeDoc.write(fullDocument);
+                iframeDoc.close();
+                // Trigger auto-scroll after write completes
+                setTimeout(() => {
+                    scrollPreviewToBottom();
+                }, 30);
+            } catch(e) { console.warn(e); }
+        }
+        
+        function saveCurrentEditorToStorage() {
+            storedCode[currentLanguage] = editorTextarea.value;
+            if (!isTypingActive) renderLivePreview();
+        }
+        
+        function loadCurrentLanguageToEditor() {
+            if (!isTypingActive) {
+                editorTextarea.value = storedCode[currentLanguage];
+                renderLivePreview();
+                updateStatusText(`Loaded ${currentLanguage.toUpperCase()} mode`, "🟢");
+            }
+        }
+        
+        function updateStatusText(msg, icon = "🟢") {
+            statusTextSpan.innerText = msg;
+            liveStatusIcon.innerHTML = icon;
+            setTimeout(() => {
+                if (!isTypingActive && statusTextSpan.innerText === msg) {
+                    statusTextSpan.innerText = `${currentLanguage.toUpperCase()} mode — paste to auto-type + auto-scroll`;
+                    liveStatusIcon.innerHTML = "🟢";
+                }
+            }, 2000);
+        }
+        
+        
+        function stopAutoTyping() {
+            if (typingTimeoutId) clearTimeout(typingTimeoutId);
+            isTypingActive = false;
+            currentTypingIndex = 0;
+            targetCodeString = "";
+            editorTextarea.classList.remove('auto-typing-active');
+        }
+        
+        function startAutoTyping(finalCode) {
+            stopAutoTyping();
+            if (finalCode === undefined || finalCode === null) finalCode = "";
+            targetCodeString = finalCode;
+            
+            if (targetCodeString.length === 0) {
+                editorTextarea.value = "";
+                saveCurrentEditorToStorage();
+                renderLivePreview();
+                return;
+            }
+            
+            editorTextarea.value = "";
+            currentTypingIndex = 0;
+            isTypingActive = true;
+            editorTextarea.classList.add('auto-typing-active');
+            statusTextSpan.innerText = `⚡ Auto-typing ${currentLanguage.toUpperCase()}... preview live`;
+            liveStatusIcon.innerHTML = "⌨️✨";
+            
+            function typeCharacter() {
+                if (!isTypingActive) return;
+                if (currentTypingIndex < targetCodeString.length) {
+                    const currentText = editorTextarea.value;
+                    const nextChar = targetCodeString[currentTypingIndex];
+                    editorTextarea.value = currentText + nextChar;
+                    editorTextarea.scrollTop = editorTextarea.scrollHeight;
+                    currentTypingIndex++;
+                    
+                    // partial rendering + auto-scroll each character for fluent feel
+                    const partialValue = editorTextarea.value;
+                    const tempHtml = currentLanguage === 'html' ? partialValue : storedCode.html;
+                    const tempCss = currentLanguage === 'css' ? partialValue : storedCode.css;
+                    const tempJs = currentLanguage === 'js' ? partialValue : storedCode.js;
+                    const tempDoc = `<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${tempCss}</style></head><body>${tempHtml}<script>${tempJs}<\/script></body></html>`;
+                    try {
+                        const iframeDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+                        iframeDoc.open();
+                        iframeDoc.write(tempDoc);
+                        iframeDoc.close();
+                        // scroll on each typing step (for live effect)
+                        setTimeout(() => scrollPreviewToBottom(), 5);
+                    } catch(e) {}
+                    
+                    typingTimeoutId = setTimeout(typeCharacter, 6);
+                } else {
+                    finishTyping();
+                }
+            }
+            
+            function finishTyping() {
+                if (typingTimeoutId) clearTimeout(typingTimeoutId);
+                isTypingActive = false;
+                editorTextarea.classList.remove('auto-typing-active');
+                if (editorTextarea.value !== targetCodeString) editorTextarea.value = targetCodeString;
+                storedCode[currentLanguage] = editorTextarea.value;
+                renderLivePreview(); // final full render with scroll
+                statusTextSpan.innerText = `✓ ${currentLanguage.toUpperCase()} code updated — preview live + auto-scroll`;
+                liveStatusIcon.innerHTML = "🟢";
+                currentTypingIndex = 0;
+                targetCodeString = "";
+                typingTimeoutId = null;
+                setTimeout(() => {
+                    if (!isTypingActive) statusTextSpan.innerText = `${currentLanguage.toUpperCase()} mode — paste to auto-type`;
+                }, 1800);
+            }
+            typeCharacter();
+        }
+        
+      
+        function onPasteEvent(e) {
+            e.preventDefault();
+            let pastedText = "";
+            if (e.clipboardData) pastedText = e.clipboardData.getData('text/plain');
+            else if (window.clipboardData) pastedText = window.clipboardData.getData('Text');
+            if (pastedText) {
+                stopAutoTyping();
+                startAutoTyping(pastedText);
+            }
+        }
+        
+        function onManualInput() {
+            if (isTypingActive) {
+                stopAutoTyping();
+                storedCode[currentLanguage] = editorTextarea.value;
+                renderLivePreview();
+                updateStatusText(`✏️ Manual edit — ${currentLanguage.toUpperCase()} saved + scroll`);
+                return;
+            }
+            storedCode[currentLanguage] = editorTextarea.value;
+            renderLivePreview();
+            if (!window._statusTimeout) {
+                statusTextSpan.innerText = `⌨️ Editing ${currentLanguage.toUpperCase()}... preview synced`;
+                liveStatusIcon.innerHTML = "✏️";
+                if (window._statusClear) clearTimeout(window._statusClear);
+                window._statusClear = setTimeout(() => {
+                    if (!isTypingActive) statusTextSpan.innerText = `${currentLanguage.toUpperCase()} mode — paste to auto-type`;
+                    liveStatusIcon.innerHTML = "🟢";
+                    window._statusClear = null;
+                }, 1200);
+            }
+        }
+        
+      
+        function switchLanguage(lang) {
+            if (isTypingActive) stopAutoTyping();
+           
+            storedCode[currentLanguage] = editorTextarea.value;
+            // Update active UI
+            htmlBtn.classList.remove('active');
+            cssBtn.classList.remove('active');
+            jsBtn.classList.remove('active');
+            if (lang === 'html') htmlBtn.classList.add('active');
+            if (lang === 'css') cssBtn.classList.add('active');
+            if (lang === 'js') jsBtn.classList.add('active');
+            
+            currentLanguage = lang;
+            editorTextarea.value = storedCode[currentLanguage];
+            renderLivePreview();
+            statusTextSpan.innerText = `Switched to ${lang.toUpperCase()} — previous code restored + auto-scroll`;
+            liveStatusIcon.innerHTML = "🔄";
+            setTimeout(() => {
+                if (!isTypingActive) statusTextSpan.innerText = `${currentLanguage.toUpperCase()} mode — paste to auto-type`;
+                liveStatusIcon.innerHTML = "🟢";
+            }, 1500);
+        }
+        
+        function clearCurrentLanguage() {
+            if (isTypingActive) stopAutoTyping();
+            startAutoTyping("");
+            updateStatusText(`🧹 Cleared ${currentLanguage.toUpperCase()} code`, "✨");
+        }
+        
+        function forceRefresh() {
+            if (isTypingActive) {
+                if (typingTimeoutId) clearTimeout(typingTimeoutId);
+                isTypingActive = false;
+                editorTextarea.classList.remove('auto-typing-active');
+            }
+            storedCode[currentLanguage] = editorTextarea.value;
+            renderLivePreview();
+            updateStatusText("Preview manually refreshed + auto-scroll", "🔄");
+        }
+        
+        // ----- Modal Functions (unchanged) -----
+        function openFullPagePreview() {
+            const fullDoc = buildCombinedPreview();
+            const iframeDoc = fullPageIframe.contentDocument || fullPageIframe.contentWindow.document;
+            iframeDoc.open();
+            iframeDoc.write(fullDoc);
+            iframeDoc.close();
+            fullPageModal.style.display = "flex";
+        }
+        function openFullCodePreview() {
+            const combined = `// ========== HTML ==========\n${storedCode.html}\n\n// ========== CSS ==========\n${storedCode.css}\n\n// ========== JS ==========\n${storedCode.js}`;
+            codePreviewPre.textContent = combined;
+            codePreviewModal.style.display = "flex";
+        }
+        function closeModals() {
+            fullPageModal.style.display = "none";
+            codePreviewModal.style.display = "none";
+        }
+        
+        // Additional continuous auto-scroll hook: ensures that any dynamic changes inside iframe (like delayed rendering) also cause scroll
+        function setupIframeAutoScrollOnLoad() {
+            previewFrame.addEventListener('load', function() {
+                setTimeout(() => scrollPreviewToBottom(), 60);
+            });
+            // Also each time the previewFrame gets new content, capture mutation within iframe body? but our render already calls.
+        }
+        
+        // ----- Event Binding -----
+        editorTextarea.addEventListener('paste', onPasteEvent);
+        editorTextarea.addEventListener('input', onManualInput);
+        htmlBtn.addEventListener('click', () => switchLanguage('html'));
+        cssBtn.addEventListener('click', () => switchLanguage('css'));
+        jsBtn.addEventListener('click', () => switchLanguage('js'));
+        clearBtn.addEventListener('click', clearCurrentLanguage);
+        forcePreviewBtn.addEventListener('click', forceRefresh);
+        fullPagePreviewBtn.addEventListener('click', openFullPagePreview);
+        fullCodePreviewBtn.addEventListener('click', openFullCodePreview);
+        closeFullPage.addEventListener('click', closeModals);
+        closeCodeModal.addEventListener('click', closeModals);
+        window.addEventListener('click', (e) => {
+            if (e.target === fullPageModal) fullPageModal.style.display = "none";
+            if (e.target === codePreviewModal) codePreviewModal.style.display = "none";
+        });
+        
+        // Initialize: HTML mode active
+        function init() {
+            currentLanguage = 'html';
+            htmlBtn.classList.add('active');
+            cssBtn.classList.remove('active');
+            jsBtn.classList.remove('active');
+            editorTextarea.value = storedCode.html;
+            renderLivePreview();
+            statusTextSpan.innerText = "HTML mode — paste any code → auto-typing & auto-scroll preview";
+            liveStatusIcon.innerHTML = "🟢";
+            editorTextarea.focus();
+            setupIframeAutoScrollOnLoad();
+            // initial scroll indicator ready
+            scrollIndicator.style.opacity = '1';
+        }
+        init();
+    })();
+</script>
+</body>
+</html>
