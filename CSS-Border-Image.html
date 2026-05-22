@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="title" content="CSS Border Image Generator">
+<meta name="description" content="CSS Border Image Generator - Create stunning border images with live preview, gradients, and custom slicing. Copy CSS code easily.">
+<meta name="keywords" content="CSS border image generator, border-image tool, border image slice, border image width, border image outset, gradient border, CSS border generator, live preview, CSS code generator, web design tool">
+<meta name="author" content="PremBabu Kashyap">
+<meta name="robots" content="index, follow">
+    <meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport'/>
+    <title>CSS Border Image Generator | Accessible Tool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== FIXED CONTRAST & ACCESSIBILITY ===== */
+        /* No structural or functional changes — only color contrast & landmark */
+        #PREMPK{padding:0;margin:0;}
+        #PREMPK .container {
+            max-width:1200px;
+            margin:5px;
+            background: white;
+            border-radius:12px;
+            padding:2px;
+            box-shadow:1px 1px 5px red, -1px -1px 5px blue;
+            overflow: hidden;
+        }
+        
+        #PREMPK .container header {
+            background:blue;
+            color:white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius:10px;
+        }
+        
+        #PREMPK .container header::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #4a6cf7, #2e4fd0, #4a6cf7);
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0.7;
+        }
+        
+        #PREMPK .container header h1{
+            font-size:1.5rem;
+            margin-bottom: 10px;
+            text-shadow: 
+2px 2px 4px rgba(0, 0, 0, 0.5),-2px -2px 4px rgba(255, 0, 0, 0.5),0px 0px 8px rgba(0, 255, 0, 0.8);color:white;
+    -webkit-text-stroke:.3px white;
+        }
+        
+       #PREMPK .container header .subtitle {
+            font-size: 1.1rem;
+            -webkit-text-stroke:.4px red;
+            font-weight:900;
+            color: white;
+        }
+        
+      #PREMPK .container .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding:1px;
+            gap: 25px;
+        }
+        
+       #PREMPK .container .main-content .controls {
+            flex: 1;
+            min-width:290px;
+            padding:1px;
+            border-radius:10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        #PREMPK .preview {
+            flex: 1;
+            min-width:290px;
+            display: flex;
+            flex-direction: column;
+            gap:25px;
+        }
+        
+       #PREMPK .container .control-group {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid green;
+        }
+        
+        /* 🔥 CONTRAST FIX: headings on white background — now fully readable (WCAG AAA) */
+        #PREMPK .container .main-content .controls h2 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            /* from white -> dark navy for maximum contrast against white background */
+            color: #0a2647;
+            text-shadow: none;
+            font: bold 18px Fantasy;
+            background: transparent;
+        }
+        
+        /* ensure icons inherit proper contrast */
+        #PREMPK .container .main-content .controls h2 i {
+            margin-right: 10px;
+            color: #0a2647;
+        }
+        
+       #PREMPK .container .main-content .controls .form-group {
+            margin-bottom: 15px;
+        }
+        
+       #PREMPK .container .main-content .controls .form-group label {
+            display: block;
+            margin:0 8px 0 0;
+            font-weight:500;
+            color: #1e2a3e;
+            font-size:15px;
+        }
+        #PREMPK .container .main-content .controls .form-group label span{ margin:0 -16px;}
+        
+        
+      #PREMPK .container .main-content .controls input[type="text"],
+        input[type="number"],
+        input[type="url"],
+        select,
+        textarea {
+            width:96%;
+            padding:10px 2px;
+            border: 1px solid red;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        #PREMPK .container .main-content .controls input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="url"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #4a6cf7;
+            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.2);
+        }
+        
+       #PREMPK .container .main-content .controls input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            outline: none;
+            width:96%;
+            height: 0.8em;
+            border-radius: 0.8em;
+            overflow: hidden;
+            background:white;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 1);
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        #PREMPK .container .main-content .controls input[type="range"]:hover {
+            opacity: 1;
+        }
+        
+      #PREMPK .container .main-content .controls input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 1.2em;
+            height: 1.2em;
+            border-radius: 50%;
+            border: 0.01em solid #444;
+            cursor: pointer;
+            background-color:white;
+            box-shadow: inset 0 0 2px rgba(0, 0, 0, 1), -407px 0 0 400px #333;
+        }
+        #PREMPK .container .main-content .controls input[type="color"] {
+            width:96%;
+            height: 40px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer; 
+        }     
+        
+        /* 🔥 RANGE VALUE CONTRAST FIX: deep pink / burgundy for better legibility (WCAG compliant) */
+        #PREMPK .container .main-content .controls .range-value {
+            display: inline-block;
+            width: 50px;
+            text-align: center;
+            font-weight: bold;
+            color: #b12a5c;
+        }
+        
+        #PREMPK .dimension-controls {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        
+        #PREMPK .preview-box {
+            flex: 1;
+            min-height:200px;
+            border: 2px dashed red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding:5px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+       #PREMPK #previewElement {
+            padding:60px;
+            text-align: center;
+            font-size: 20px;
+            width:calc(100% - 120px);
+            height:calc(100% - 120px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: #222;
+            font-weight: 500;
+        }
+        
+        #PREMPK .code-output {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding:2px;
+            border-radius: 10px;
+            font-family: 'Fira Code', monospace;
+            overflow: auto;
+            max-height: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        #PREMPK .code-output pre {
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+        
+        #PREMPK .actions {
+            display:flex;
+            gap:15px;
+            margin-top:2px;
+            align-items:center;
+            justify-content:space-around;
+        }
+        
+       #PREMPK .actions button{
+            padding:14px 25px;
+            border:none;
+            border-radius:6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            gap:8px;
+        }
+        
+       #PREMPK .actions #copyBtn {
+            background:white;
+            color:blue;
+            box-shadow:1px 1px 3px red, -1px -1px 3px blue;
+        }
+       
+        #PREMPK .actions #copyBtn:hover {
+            background:black;
+            color:white;
+            transform: translateY(-2px);
+            box-shadow:1px 1px 3px hotpink, -1px -1px 3px cyan;
+            
+            }
+        
+       #PREMPK .actions #resetBtn{
+            background:black;
+            color:white;
+            border:1px groove black;
+        }
+        
+        #PREMPK .actions #resetBtn:hover {
+            background: #113227;
+            color:#00FFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+       #PREMPK .success-message {
+            background:green;
+            color: white;
+            padding:0px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+         #PREMPK .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            
+        }
+        
+       #PREMPK .tab {
+            padding:12px 25px;
+            cursor: pointer;
+            background: #f1f1f1;
+            border-radius: 6px 6px 0 0;
+            margin-right: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            color: #1e293b;
+        }
+        
+         #PREMPK .tab:hover {
+            background: #e5e5e5;
+        }
+        
+        /* 🔥 ACTIVE TAB CONTRAST FIX: dark gold + nearly black text ensures 6:1+ ratio */
+        #PREMPK .tab.active {
+            background: #ca9e1b;
+            color: #0f0f0f;
+        }
+        
+        #PREMPK .tab-content {
+            display: none;
+        }
+        
+       #PREMPK .container .main-content .controls .tab-content.active {
+            display: block;
+        }
+        
+        #PREMPK .preset-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        #PREMPK .preset {
+            padding:10px 0;
+            background: #f0f4ff;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            color: #0f2b3d;
+            font-weight: 500;
+        }
+        
+       #PREMPK .preset:hover {
+            background: #e0e8ff;
+            transform: translateY(-2px);
+        }
+        
+        #PREMPK .preset.active {
+            border-color: #4a6cf7;
+            background: #e0e8ff;
+        }
+        
+        #PREMPK .gradient-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        #PREMPK .gradient-input {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+       #PREMPK .gradient-previews {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        #PREMPK .gradient-preview {
+            height: 40px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+      #PREMPK .gradient-preview:hover {
+            transform: scale(1.05);
+        }
+        
+        #PREMPK .gradient-preview.active {
+            border-color: #4a6cf7;
+        }
+        
+        #PREMPK footer {
+            text-align: center;
+            padding:2px;
+            background: #f8fafc;
+            color: #1e293b;
+            font-size: 0.9rem;
+        }
+        
+      #PREMPK  @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+       @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            #PREMPK .dimension-controls {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+           #PREMPK .gradient-controls {
+                grid-template-columns: 1fr;
+            }
+            
+           #PREMPK .gradient-previews {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="PREMPK">
+    <div class="container">
+        <header>
+            <h1>CSS Border Image Generator</h1>
+            <p class="subtitle">Create beautiful border images with this easy-to-use tool</p>
+        </header>
+        
+        <!-- ✅ MAIN LANDMARK ADDED: semantic main element for accessibility -->
+        <main>
+            <div class="main-content">
+                <div class="controls">
+                    <h2><i class="fas fa-cog"></i> Configuration</h2>
+                    
+                    <div class="tabs">
+                        <div class="tab active" data-tab="image">Image</div>
+                        <div class="tab" data-tab="gradient">Gradient</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="imageTab">
+                        <div class="form-group">
+                            <label for="imageUrl">Image URL</label>
+                            <input type="url" id="imageUrl" placeholder="Enter image URL or choose preset" value="https://mdn.github.io/css-examples/tools/border-image-generator/border-image-1.png">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Preset Images</label>
+                            <div class="preset-images">
+                                <div class="preset active" data-url="https://mdn.github.io/css-examples/tools/border-image-generator/border-image-1.png">Preset 1</div>
+                                <div class="preset" data-url="https://mdn.github.io/css-examples/tools/border-image-generator/border-image-2.png">Preset 2</div>
+                                <div class="preset" data-url="https://mdn.github.io/css-examples/tools/border-image-generator/border-image-3.png">Preset 3</div>
+                                <div class="preset" data-url="https://mdn.github.io/css-examples/tools/border-image-generator/border-image-4.png">Preset 4</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="gradientTab">
+                        <div class="form-group">
+                            <label for="gradientType">Gradient Type</label>
+                            <select id="gradientType">
+                                <option value="linear">Linear Gradient</option>
+                                <option value="radial">Radial Gradient</option>
+                                <option value="conic">Conic Gradient</option>
+                            </select>
+                        </div>
+                        
+                        <div class="gradient-controls">
+                            <div class="form-group">
+                                <label for="gradientDirection">Direction</label>
+                                <select id="gradientDirection">
+                                    <option value="to right">To Right</option>
+                                    <option value="to bottom">To Bottom</option>
+                                    <option value="to left">To Left</option>
+                                    <option value="to top">To Top</option>
+                                    <option value="45deg">45deg</option>
+                                    <option value="135deg">135deg</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="gradientShape">Shape (Radial Only)</label>
+                                <select id="gradientShape">
+                                    <option value="circle">Circle</option>
+                                    <option value="ellipse">Ellipse</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="gradient-controls">
+                            <div class="form-group">
+                                <label for="color1">Color 1</label>
+                                <input type="color" id="color1" value="#4facfe">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="color2">Color 2</label>
+                                <input type="color" id="color2" value="#00f2fe">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gradientInput">Custom Gradient Input</label>
+                            <textarea id="gradientInput" rows="3" placeholder="linear-gradient(to right, #4facfe 0%, #00f2fe 100%)"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Gradient Presets</label>
+                            <div class="gradient-previews">
+                                <div class="gradient-preview active" style="background: linear-gradient(to right, #4facfe, #00f2fe);" data-gradient="linear-gradient(to right, #4facfe, #00f2fe)"></div>
+                                <div class="gradient-preview" style="background: linear-gradient(to right, #ff6b6b, #ff9a3d);" data-gradient="linear-gradient(to right, #ff6b6b, #ff9a3d)"></div>
+                                <div class="gradient-preview" style="background: linear-gradient(to right, #43e97b, #38f9d7);" data-gradient="linear-gradient(to right, #43e97b, #38f9d7)"></div>
+                                <div class="gradient-preview" style="background: linear-gradient(to right, #fa709a, #fee140);" data-gradient="linear-gradient(to right, #fa709a, #fee140)"></div>
+                                <div class="gradient-preview" style="background: radial-gradient(circle, #5c5c5c, #1c1c1c);" data-gradient="radial-gradient(circle, #5c5c5c, #1c1c1c)"></div>
+                                <div class="gradient-preview" style="background: conic-gradient(from 0deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000);" data-gradient="conic-gradient(from 0deg, #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <h2><i class="fas fa-cut"></i> Border Image Slice</h2>
+                        <div class="form-group">
+                            <label for="sliceAll">Slice (All sides) <span class="range-value" id="sliceAllValue">30</span>%</label>
+                            <input type="range" id="sliceAll" min="0" max="100" value="30">
+                        </div>
+                        
+                        <label>Individual Sides</label>
+                        <div class="dimension-controls">
+                            <div class="form-group">
+                                <label for="sliceTop">Top <span class="range-value" id="sliceTopValue">30</span>%</label>
+                                <input type="range" id="sliceTop" min="0" max="100" value="30">
+                            </div>
+                            <div class="form-group">
+                                <label for="sliceRight">Right <span class="range-value" id="sliceRightValue">30</span>%</label>
+                                <input type="range" id="sliceRight" min="0" max="100" value="30">
+                            </div>
+                            <div class="form-group">
+                                <label for="sliceBottom">Bottom <span class="range-value" id="sliceBottomValue">30</span>%</label>
+                                <input type="range" id="sliceBottom" min="0" max="100" value="30">
+                            </div>
+                            <div class="form-group">
+                                <label for="sliceLeft">Left <span class="range-value" id="sliceLeftValue">30</span>%</label>
+                                <input type="range" id="sliceLeft" min="0" max="100" value="30">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <h2><i class="fas fa-arrows-alt-h"></i> Border Image Width</h2>
+                        <div class="form-group">
+                            <label for="widthAll">Width (All sides) <span class="range-value" id="widthAllValue">30</span>px</label>
+                            <input type="range" id="widthAll" min="0" max="100" value="30">
+                        </div>
+                        
+                        <label>Individual Sides</label>
+                        <div class="dimension-controls">
+                            <div class="form-group">
+                                <label for="widthTop">Top <span class="range-value" id="widthTopValue">30</span>px</label>
+                                <input type="range" id="widthTop" min="0" max="100" value="30">
+                            </div>
+                            <div class="form-group">
+                                <label for="widthRight">Right <span class="range-value" id="widthRightValue">30</span>px</label>
+                                <input type="range" id="widthRight" min="0" max="100" value="30">
+                            </div>
+                            <div class="form-group">
+                                <label for="widthBottom">Bottom <span class="range-value" id="widthBottomValue">30</span>px</label>
+                                <input type="range" id="widthBottom" min="0" max="100" value="30">
+                            </div>
+                            <div class="form-group">
+                                <label for="widthLeft">Left <span class="range-value" id="widthLeftValue">30</span>px</label>
+                                <input type="range" id="widthLeft" min="0" max="100" value="30">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <h2><i class="fas fa-expand"></i> Border Image Outset</h2>
+                        <div class="form-group">
+                            <label for="outsetAll">Outset (All sides) <span class="range-value" id="outsetAllValue">0</span>px</label>
+                            <input type="range" id="outsetAll" min="0" max="50" value="0">
+                        </div>
+                        
+                        <label>Individual Sides</label>
+                        <div class="dimension-controls">
+                            <div class="form-group">
+                                <label for="outsetTop">Top <span class="range-value" id="outsetTopValue">0</span>px</label>
+                                <input type="range" id="outsetTop" min="0" max="50" value="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="outsetRight">Right <span class="range-value" id="outsetRightValue">0</span>px</label>
+                                <input type="range" id="outsetRight" min="0" max="50" value="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="outsetBottom">Bottom <span class="range-value" id="outsetBottomValue">0</span>px</label>
+                                <input type="range" id="outsetBottom" min="0" max="50" value="0">
+                            </div>
+                            <div class="form-group">
+                                <label for="outsetLeft">Left <span class="range-value" id="outsetLeftValue">0</span>px</label>
+                                <input type="range" id="outsetLeft" min="0" max="50" value="0">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <h2><i class="fas fa-repeat"></i> Other Properties</h2>
+                        <div class="form-group">
+                            <label for="repeat">Repeat</label>
+                            <select id="repeat">
+                                <option value="stretch">stretch</option>
+                                <option value="repeat">repeat</option>
+                                <option value="round">round</option>
+                                <option value="space">space</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="preview">
+                    <h2><i class="fas fa-eye"></i> Live Preview</h2>
+                    <div class="preview-box">
+                        <div id="previewElement">
+                            This is a preview of your border image
+                        </div>
+                    </div>
+                    
+                    <h2><i class="fas fa-code"></i> CSS Code</h2>
+                    <div class="code-output">
+                        <pre id="cssCode">#element {
+  border-image-source: url('https://mdn.github.io/css-examples/tools/border-image-generator/border-image-1.png');
+  border-image-slice: 30%;
+  border-image-width: 30px;
+  border-image-outset: 0px;
+  border-image-repeat: stretch;
+}</pre>
+                    </div>
+                    
+                    <div class="actions">
+                        <button id="copyBtn"><i class="fas fa-copy"></i> Copy CSS</button>
+                        <button id="resetBtn"><i class="fas fa-redo"></i> Reset</button>
+                    </div>
+                    
+                    <div class="success-message" id="successMessage">
+                        <i class="fas fa-check-circle"></i> CSS copied to clipboard!
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Created with ❤️ | CSS Border Image Generator Tool © 2026</p>
+        </footer>
+    </div>
+</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all DOM elements
+            const imageUrlInput = document.getElementById('imageUrl');
+            const gradientType = document.getElementById('gradientType');
+            const gradientDirection = document.getElementById('gradientDirection');
+            const gradientShape = document.getElementById('gradientShape');
+            const color1 = document.getElementById('color1');
+            const color2 = document.getElementById('color2');
+            const gradientInput = document.getElementById('gradientInput');
+            const sliceAll = document.getElementById('sliceAll');
+            const sliceTop = document.getElementById('sliceTop');
+            const sliceRight = document.getElementById('sliceRight');
+            const sliceBottom = document.getElementById('sliceBottom');
+            const sliceLeft = document.getElementById('sliceLeft');
+            const widthAll = document.getElementById('widthAll');
+            const widthTop = document.getElementById('widthTop');
+            const widthRight = document.getElementById('widthRight');
+            const widthBottom = document.getElementById('widthBottom');
+            const widthLeft = document.getElementById('widthLeft');
+            const outsetAll = document.getElementById('outsetAll');
+            const outsetTop = document.getElementById('outsetTop');
+            const outsetRight = document.getElementById('outsetRight');
+            const outsetBottom = document.getElementById('outsetBottom');
+            const outsetLeft = document.getElementById('outsetLeft');
+            const repeat = document.getElementById('repeat');
+            const previewElement = document.getElementById('previewElement');
+            const cssCode = document.getElementById('cssCode');
+            const copyBtn = document.getElementById('copyBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const successMessage = document.getElementById('successMessage');
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            const presets = document.querySelectorAll('.preset');
+            const gradientPreviews = document.querySelectorAll('.gradient-preview');
+            
+            // Initialize range values display
+            updateRangeValue('sliceAll', 'sliceAllValue');
+            updateRangeValue('sliceTop', 'sliceTopValue');
+            updateRangeValue('sliceRight', 'sliceRightValue');
+            updateRangeValue('sliceBottom', 'sliceBottomValue');
+            updateRangeValue('sliceLeft', 'sliceLeftValue');
+            updateRangeValue('widthAll', 'widthAllValue');
+            updateRangeValue('widthTop', 'widthTopValue');
+            updateRangeValue('widthRight', 'widthRightValue');
+            updateRangeValue('widthBottom', 'widthBottomValue');
+            updateRangeValue('widthLeft', 'widthLeftValue');
+            updateRangeValue('outsetAll', 'outsetAllValue');
+            updateRangeValue('outsetTop', 'outsetTopValue');
+            updateRangeValue('outsetRight', 'outsetRightValue');
+            updateRangeValue('outsetBottom', 'outsetBottomValue');
+            updateRangeValue('outsetLeft', 'outsetLeftValue');
+            
+            // Set up tab functionality
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const tabId = tab.getAttribute('data-tab');
+                    
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    
+                    // Show active tab content
+                    tabContents.forEach(content => {
+                        if (content.id === `${tabId}Tab`) {
+                            content.classList.add('active');
+                        } else {
+                            content.classList.remove('active');
+                        }
+                    });
+                    
+                    updateBorderImage();
+                });
+            });
+            
+            // Set up preset images
+            presets.forEach(preset => {
+                preset.addEventListener('click', () => {
+                    const url = preset.getAttribute('data-url');
+                    imageUrlInput.value = url;
+                    
+                    // Update active preset
+                    presets.forEach(p => p.classList.remove('active'));
+                    preset.classList.add('active');
+                    
+                    updateBorderImage();
+                });
+            });
+            
+            // Set up gradient presets
+            gradientPreviews.forEach(preview => {
+                preview.addEventListener('click', () => {
+                    const gradient = preview.getAttribute('data-gradient');
+                    gradientInput.value = gradient;
+                    
+                    // Update active preview
+                    gradientPreviews.forEach(p => p.classList.remove('active'));
+                    preview.classList.add('active');
+                    
+                    updateBorderImage();
+                });
+            });
+            
+            // Update all range value displays
+            function updateRangeValue(inputId, valueSpanId) {
+                const input = document.getElementById(inputId);
+                const valueSpan = document.getElementById(valueSpanId);
+                valueSpan.textContent = input.value;
+            }
+            
+            // Generate gradient string
+            function getGradientString() {
+                // If custom gradient input has value, use it
+                if (gradientInput.value.trim() !== '') {
+                    return gradientInput.value;
+                }
+                
+                // Otherwise generate from controls
+                const type = gradientType.value;
+                const direction = gradientDirection.value;
+                const shape = gradientShape.value;
+                const color1Val = color1.value;
+                const color2Val = color2.value;
+                
+                if (type === 'linear') {
+                    return `linear-gradient(${direction}, ${color1Val}, ${color2Val})`;
+                } else if (type === 'radial') {
+                    return `radial-gradient(${shape}, ${color1Val}, ${color2Val})`;
+                } else {
+                    return `conic-gradient(from ${direction}, ${color1Val}, ${color2Val})`;
+                }
+            }
+            
+            // Update border image based on inputs
+            function updateBorderImage() {
+                const activeTab = document.querySelector('.tab.active').getAttribute('data-tab');
+                let borderImageSource = '';
+                
+                if (activeTab === 'image') {
+                    borderImageSource = `url('${imageUrlInput.value}')`;
+                } else {
+                    borderImageSource = getGradientString();
+                }
+                
+                const sliceValue = `${sliceTop.value}% ${sliceRight.value}% ${sliceBottom.value}% ${sliceLeft.value}%`;
+                const widthValue = `${widthTop.value}px ${widthRight.value}px ${widthBottom.value}px ${widthLeft.value}px`;
+                const outsetValue = `${outsetTop.value}px ${outsetRight.value}px ${outsetBottom.value}px ${outsetLeft.value}px`;
+                const repeatValue = repeat.value;
+                
+                // Apply to preview element
+                previewElement.style.borderImageSource = borderImageSource;
+                previewElement.style.borderImageSlice = sliceValue;
+                previewElement.style.borderImageWidth = widthValue;
+                previewElement.style.borderImageOutset = outsetValue;
+                previewElement.style.borderImageRepeat = repeatValue;
+                previewElement.style.borderStyle = 'solid';
+                
+                // Update code output
+                cssCode.textContent = `#element {
+  border-image-source: ${borderImageSource};
+  border-image-slice: ${sliceValue};
+  border-image-width: ${widthValue};
+  border-image-outset: ${outsetValue};
+  border-image-repeat: ${repeatValue};
+}`;
+            }
+            
+            // Set up event listeners for all inputs
+            const allInputs = [
+                imageUrlInput, gradientType, gradientDirection, gradientShape, color1, color2, gradientInput,
+                sliceAll, sliceTop, sliceRight, sliceBottom, sliceLeft,
+                widthAll, widthTop, widthRight, widthBottom, widthLeft,
+                outsetAll, outsetTop, outsetRight, outsetBottom, outsetLeft, repeat
+            ];
+            
+            allInputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    // Update range value displays
+                    if (input.type === 'range') {
+                        updateRangeValue(input.id, `${input.id}Value`);
+                    }
+                    
+                    // If "all" sliders change, update individual sliders
+                    if (input === sliceAll) {
+                        sliceTop.value = sliceAll.value;
+                        sliceRight.value = sliceAll.value;
+                        sliceBottom.value = sliceAll.value;
+                        sliceLeft.value = sliceAll.value;
+                        updateRangeValue('sliceTop', 'sliceTopValue');
+                        updateRangeValue('sliceRight', 'sliceRightValue');
+                        updateRangeValue('sliceBottom', 'sliceBottomValue');
+                        updateRangeValue('sliceLeft', 'sliceLeftValue');
+                    }
+                    
+                    if (input === widthAll) {
+                        widthTop.value = widthAll.value;
+                        widthRight.value = widthAll.value;
+                        widthBottom.value = widthAll.value;
+                        widthLeft.value = widthAll.value;
+                        updateRangeValue('widthTop', 'widthTopValue');
+                        updateRangeValue('widthRight', 'widthRightValue');
+                        updateRangeValue('widthBottom', 'widthBottomValue');
+                        updateRangeValue('widthLeft', 'widthLeftValue');
+                    }
+                    
+                    if (input === outsetAll) {
+                        outsetTop.value = outsetAll.value;
+                        outsetRight.value = outsetAll.value;
+                        outsetBottom.value = outsetAll.value;
+                        outsetLeft.value = outsetAll.value;
+                        updateRangeValue('outsetTop', 'outsetTopValue');
+                        updateRangeValue('outsetRight', 'outsetRightValue');
+                        updateRangeValue('outsetBottom', 'outsetBottomValue');
+                        updateRangeValue('outsetLeft', 'outsetLeftValue');
+                    }
+                    
+                    updateBorderImage();
+                });
+            });
+            
+            // Copy CSS to clipboard
+            copyBtn.addEventListener('click', () => {
+                const textArea = document.createElement('textarea');
+                textArea.value = cssCode.textContent;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                // Show success message
+                successMessage.style.display = 'block';
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 2000);
+            });
+            
+            // Reset all values
+            resetBtn.addEventListener('click', () => {
+                imageUrlInput.value = 'https://mdn.github.io/css-examples/tools/border-image-generator/border-image-1.png';
+                gradientType.value = 'linear';
+                gradientDirection.value = 'to right';
+                gradientShape.value = 'circle';
+                color1.value = '#4facfe';
+                color2.value = '#00f2fe';
+                gradientInput.value = '';
+                sliceAll.value = 30;
+                sliceTop.value = 30;
+                sliceRight.value = 30;
+                sliceBottom.value = 30;
+                sliceLeft.value = 30;
+                widthAll.value = 30;
+                widthTop.value = 30;
+                widthRight.value = 30;
+                widthBottom.value = 30;
+                widthLeft.value = 30;
+                outsetAll.value = 0;
+                outsetTop.value = 0;
+                outsetRight.value = 0;
+                outsetBottom.value = 0;
+                outsetLeft.value = 0;
+                repeat.value = 'stretch';
+                
+                // Update active preset
+                presets.forEach(p => p.classList.remove('active'));
+                document.querySelector('.preset').classList.add('active');
+                
+                // Update active gradient preview
+                gradientPreviews.forEach(p => p.classList.remove('active'));
+                document.querySelector('.gradient-preview').classList.add('active');
+                
+                // Update all range value displays
+                updateRangeValue('sliceAll', 'sliceAllValue');
+                updateRangeValue('sliceTop', 'sliceTopValue');
+                updateRangeValue('sliceRight', 'sliceRightValue');
+                updateRangeValue('sliceBottom', 'sliceBottomValue');
+                updateRangeValue('sliceLeft', 'sliceLeftValue');
+                updateRangeValue('widthAll', 'widthAllValue');
+                updateRangeValue('widthTop', 'widthTopValue');
+                updateRangeValue('widthRight', 'widthRightValue');
+                updateRangeValue('widthBottom', 'widthBottomValue');
+                updateRangeValue('widthLeft', 'widthLeftValue');
+                updateRangeValue('outsetAll', 'outsetAllValue');
+                updateRangeValue('outsetTop', 'outsetTopValue');
+                updateRangeValue('outsetRight', 'outsetRightValue');
+                updateRangeValue('outsetBottom', 'outsetBottomValue');
+                updateRangeValue('outsetLeft', 'outsetLeftValue');
+                
+                updateBorderImage();
+            });
+            
+            // Initialize
+            updateBorderImage();
+        });
+    </script>
+</body>
+</html>
