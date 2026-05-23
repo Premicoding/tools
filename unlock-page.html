@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="description" content="Unlock Page Generator – Create custom step-by-step unlock pages with dynamic ads, progress bar, extra steps, and live preview. Fully accessible with color controls and responsive design.">
+<meta name="keywords" content="unlock page generator, ad lock page, step by step unlock, watch ads to unlock, content locker, progress bar unlock, link unlocker, free HTML unlock page, earn money unlock, sub2unlock alternative, custom unlock template, dynamic steps, color picker unlock tool">
+<meta name="author" content="Unlock Tool">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport'/>
+  <title>🔓 Unlock Page Pro | Dynamic Steps + Color Controls</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+
+    body {
+      background: #0a0a0c;
+      padding: 24px 20px;
+      color: #eef2ff;
+    }
+
+    /* main landmark */
+    .main-content {
+      max-width: 1500px;
+      margin: 0 auto;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    /* cards */
+    .generator-box, .preview-box {
+      background: #121218;
+      border-radius: 32px;
+      padding: 26px 24px;
+      border: 1px solid #2a2a32;
+      box-shadow: 0 20px 32px -12px rgba(0,0,0,0.6);
+      transition: all 0.2s;
+    }
+
+  .generator-box h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #ffffff, #93c5fd);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #d1d9ff;  /* improved contrast */
+      letter-spacing: 0.3px;
+    }
+
+    .input-group input, .input-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      background: #1e1e26;
+      border: 1px solid #2e2e38;
+      border-radius: 18px;
+      color: white;
+      font-size: 0.9rem;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .input-group input:focus, .input-group textarea:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    /* extra steps manager */
+    .extra-steps-area {
+      background: #0c0c12;
+      border-radius: 24px;
+      padding: 16px;
+      margin: 20px 0 16px;
+      border: 1px solid #2a2a30;
+    }
+
+    .extra-header {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    .extra-btn {
+      background: #2c2c36;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 40px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      transition: 0.2s;
+    }
+
+    .extra-btn.add {
+      background: #1e7e34;
+    }
+    .extra-btn.add:hover { background: #166b2c; }
+    .extra-btn.remove {
+      background: #9b2c2c;
+    }
+    .extra-btn.remove:hover { background: #7f2323; }
+
+    .extra-step-item {
+      background: #16161e;
+      padding: 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+      border-left: 4px solid #3b82f6;
+    }
+
+    .extra-step-title {
+      font-size: 0.8rem;
+      font-weight: bold;
+      color: #cdd9ff;  /* enhanced contrast */
+      margin-bottom: 10px;
+    }
+
+    .row-2col {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .row-2col .input-group {
+      flex: 1;
+      margin-bottom: 0;
+    }
+
+    /* color controls */
+    .color-panel {
+      display: flex;
+      gap: 20px;
+      margin: 20px 0 15px;
+      background: #0c0c12;
+      padding: 16px;
+      border-radius: 24px;
+      flex-wrap: wrap;
+    }
+    .color-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #1a1a22;
+      padding: 6px 16px 6px 12px;
+      border-radius: 48px;
+    }
+    .color-item label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #e2e8ff;
+    }
+    .color-item input {
+      width: 48px;
+      height: 38px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 12px;
+    }
+
+    .generate-btn, .copy-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 44px;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-top: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .generate-btn {
+      background: #2563eb;
+      color: white;
+      box-shadow: 0 4px 12px #2563eb40;
+    }
+    .generate-btn:hover { background: #1d4ed8; transform: scale(0.98); }
+
+    .copy-btn {
+      background:#0000FA;
+      color:#FFFFFF;
+    }
+    .copy-btn:hover { background: #059669; }
+
+    .code-box {
+      width: 100%;
+      height: 280px;
+      background: #0b0b10;
+      border: 1px solid #2a2a30;
+      border-radius: 20px;
+      padding: 16px;
+      color: #b5ffb5;   /* improved contrast */
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      margin-top: 20px;
+      resize: vertical;
+    }
+
+    /* live preview card ( dynamic ) */
+    .preview-card {
+      background: var(--preview-bg, #0f0f14);
+      color: var(--preview-text, #f0f0f0);
+      border-radius: 32px;
+      padding: 28px 22px;
+      text-align: center;
+      transition: background 0.2s, color 0.2s;
+      border: 1px solid #2c2c34;
+    }
+
+    .preview-logo {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 16px auto;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #ffffffcc;
+      background: #1e1e2a;
+    }
+    .preview-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+    .preview-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 12px 0 4px;
+      background: linear-gradient(120deg, #fff, #94a3f8);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .preview-desc {
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 24px;
+      opacity: 0.9;
+    }
+
+    .step-btn {
+      width: 100%;
+      height: 58px;
+      margin-top: 12px;
+      border: none;
+      border-radius: 44px;
+      background: #26262e;
+      color: #e2e2e2;
+      font-size: 1rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .step-btn.active { background: #2563eb; color: white; box-shadow: 0 6px 14px #2563eb40; }
+    .step-btn.done { background: #16a34a; color: white; cursor: default; opacity: 0.9; }
+    .step-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .progress-area { margin: 24px 0 20px; }
+    .progress-area h3 { font-size: 1rem; font-weight: 500; }
+    .bar { width: 100%; height: 8px; background: #2c2c34; border-radius: 20px; overflow: hidden; margin-top: 10px; }
+    .fill { width: 0%; height: 100%; background: #3b82f6; transition: width 0.25s; }
+
+    .unlock-main-btn {
+      width: 100%;
+      height: 68px;
+      background: #3a3a48;
+      border: none;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 26px;
+      color: #aaa;
+      cursor: not-allowed;
+      margin-top: 10px;
+    }
+    .unlock-main-btn.active { background: #0d6efd; color: white; cursor: pointer; box-shadow: 0 6px 18px #0d6efd60; }
+    .bottom-other { margin-top: 24px; font-size: 0.95rem; font-weight: 500; background: #1a1a22; padding: 10px 16px; border-radius: 60px; }
+
+    @media (max-width: 900px) {
+      .container { grid-template-columns: 1fr; }
+      .preview-title { font-size: 1.8rem; }
+    }
+#GGH{font-family: Blippo, fantasy;}
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+table th, table td{
+    border:1px solid #ccc;
+    padding:12px;
+    text-align:left;
+}
+table th{
+    background:#0b57d0;
+    color:#fff;
+}
+ul,ol{
+    padding-left:25px;
+}
+  </style>
+</head>
+<body>
+<main class="main-content" id="mainContent">
+  <div class="container">
+    <!-- GENERATOR PANEL -->
+    <div class="generator-box">
+      <h2>⚡ UNLOCK PAGE BUILDER</h2>
+      
+      <div class="input-group">
+        <label for="imageUploadInput"><i class="fa-regular fa-image"></i> Upload Logo</label>
+        <input type="file" id="imageUploadInput" accept="image/*">
+      </div>
+      
+      <div class="input-group">
+        <label for="nameInputField">👤 Name / Title</label>
+        <input type="text" id="nameInputField" placeholder="Your Name" value="Premi Coding">
+      </div>
+      
+      <div class="input-group">
+        <label for="descInputField">📝 Description</label>
+        <textarea id="descInputField" placeholder="Describe...">Complete all steps to unlock your exclusive link 🔓</textarea>
+      </div>
+
+      <!-- FIXED 3 ADS (step 1,2,3) -->
+      <div style="margin-top: 8px;"><strong>📌 Core Steps (3 mandatory)</strong></div>
+      
+      <div class="input-group"><label for="ads1Text">📺 Ad 1 Text</label><input type="text" id="ads1Text" value="WATCH AD 1"></div>
+      <div class="input-group"><label for="ads1LinkField">🔗 Ad 1 Link</label><input type="text" id="ads1LinkField" value="https://example.com/ad1"></div>
+      <div class="input-group"><label for="ads2Text">📺 Ad 2 Text</label><input type="text" id="ads2Text" value="WATCH AD 2"></div>
+      <div class="input-group"><label for="ads2LinkField">🔗 Ad 2 Link</label><input type="text" id="ads2LinkField" value="https://example.com/ad2"></div>
+      <div class="input-group"><label for="ads3Text">📺 Ad 3 Text</label><input type="text" id="ads3Text" value="WATCH AD 3"></div>
+      <div class="input-group"><label for="ads3LinkField">🔗 Ad 3 Link</label><input type="text" id="ads3LinkField" value="https://example.com/ad3"></div>
+
+      <!-- EXTRA STEPS MANAGER -->
+      <div class="extra-steps-area">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <span><i class="fa-regular fa-plus-square"></i> <strong>Extra optional steps</strong></span>
+          <div class="extra-header" style="margin-bottom: 0;">
+            <button class="extra-btn add" id="addExtraStepBtn" aria-label="Add extra step"><i class="fa-solid fa-plus"></i> ADD Other</button>
+            <button class="extra-btn remove" id="removeExtraStepBtn" aria-label="Remove last extra step"><i class="fa-solid fa-trash-can"></i> Remove</button>
+          </div>
+        </div>
+        <div id="extraStepsContainer"></div>
+        <small class="text-muted" style="color:#bbb;">➕ Add extra steps after the 3 core steps. Complete in order to unlock.</small>
+      </div>
+
+      <div class="input-group"><label for="otherTextField">💬 Footer / Other Text</label><input type="text" id="otherTextField" value="💰 Earn with Premi Coding 💰"></div>
+      <div class="input-group"><label for="linkTextButtonField">🔓 Get Link Button Text</label><input type="text" id="linkTextButtonField" value="Get Your Link"></div>
+      <div class="input-group"><label for="finalLinkField">🎯 Final Redirect Link</label><input type="text" id="finalLinkField" value="https://example.com"></div>
+
+      <!-- COLOR CONTROLS (Text & Background) -->
+      <div class="color-panel">
+        <div class="color-item"><label for="textColorPicker">Text Color</label><input type="color" id="textColorPicker" value="#f0f0f0"></div>
+        <div class="color-item"><label for="bgColorPicker">Background</label><input type="color" id="bgColorPicker" value="#0f0f14"></div>
+      </div>
+
+      <button class="generate-btn" onclick="generateFullCode()"><i class="fa-solid fa-code"></i> GENERATE FULL CODE</button>
+      <textarea class="code-box" id="codeOutput" readonly aria-label="Generated HTML code" placeholder="✨ Your unlock page HTML will appear here ..."></textarea>
+      <button class="copy-btn" onclick="copyFinalCode()"><i class="fa-regular fa-copy"></i> COPY CODE</button>
+    </div>
+
+    <!-- LIVE PREVIEW PANEL (dynamic) -->
+    <div class="preview-box">
+      <h2>🔮 LIVE PREVIEW (interactive)</h2>
+      <div id="dynamicPreviewContainer" class="preview-card" aria-label="Live interactive preview of unlock page">
+        <div style="text-align:center; padding:30px;">⚡ Loading live preview...</div>
+      </div>
+    </div>
+  </div>
+  <div id="GGH">
+  <h1>Unlock Page Pro – Advanced Content Locker & Link Unlock Tool</h1>
+
+<p>
+<b>Unlock Page Pro</b> is a modern and powerful content locking platform designed for creators, bloggers, marketers, and website owners. 
+This tool helps you protect premium links, increase user engagement, and control access to exclusive content in a professional way.
+</p>
+<p>
+<b>Unlock Page Pro</b> allows users to unlock hidden content by completing actions like watching ads, subscribing, sharing pages, or clicking links.
+</p>
+</div>
+
+<h2>What is Unlock Page Pro?</h2>
+
+<p>
+Unlock Page Pro is a smart <b>content locker system</b> that protects files, download URLs, private pages, and premium resources. 
+Website owners can create customized unlock pages that improve traffic and monetization while keeping their content secure.
+</p>
+
+<h2>Main Features of Unlock Page Pro</h2>
+
+<ul>
+<li><b>Premium Link Protection</b></li>
+<li><b>Watch Ads Unlock System</b></li>
+<li><b>Custom Unlock Buttons</b></li>
+<li><b>Responsive Mobile Friendly Design</b></li>
+<li><b>Fast Loading Performance</b></li>
+<li><b>Secure URL Redirection</b></li>
+<li><b>Custom Background & Theme Support</b></li>
+<li><b>SEO Friendly Structure</b></li>
+<li><b>Easy HTML CSS JavaScript Integration</b></li>
+<li><b>Social Media Unlock Option</b></li>
+</ul>
+
+<h2>Why Use Unlock Page Pro?</h2>
+
+<p>
+Many website owners want to protect valuable content from direct access. 
+<b>Unlock Page Pro</b> solves this problem by creating a secure unlock process that increases engagement and improves traffic quality.
+</p>
+
+<p>
+This tool is especially useful for:
+</p>
+
+<ul>
+<li>Bloggers</li>
+<li>YouTubers</li>
+<li>Developers</li>
+<li>File Sharing Websites</li>
+<li>Online Course Creators</li>
+<li>Digital Product Sellers</li>
+<li>Marketing Agencies</li>
+</ul>
+
+<h2>Benefits of Unlock Page Pro</h2>
+
+<table>
+<tr>
+<th>Feature</th>
+<th>Benefit</th>
+</tr>
+
+<tr>
+<td>Content Locker</td>
+<td>Protects premium links and files</td>
+</tr>
+
+<tr>
+<td>Watch Ads System</td>
+<td>Improves monetization and revenue</td>
+</tr>
+
+<tr>
+<td>Responsive Design</td>
+<td>Works perfectly on mobile and desktop</td>
+</tr>
+
+<tr>
+<td>Custom Buttons</td>
+<td>Provides better user experience</td>
+</tr>
+
+<tr>
+<td>SEO Optimization</td>
+<td>Helps rank better in Google search</td>
+</tr>
+
+<tr>
+<td>Fast Loading</td>
+<td>Improves website speed and engagement</td>
+</tr>
+
+</table>
+
+<h2>How Unlock Page Pro Works</h2>
+
+<p>
+The working process of Unlock Page Pro is simple and user-friendly:
+</p>
+
+<ol>
+<li>User opens the protected page</li>
+<li>Unlock instructions are displayed</li>
+<li>User completes the required action</li>
+<li>The hidden content becomes visible</li>
+<li>User gets access to the final download or URL</li>
+</ol>
+
+<h2>SEO Advantages of Unlock Page Pro</h2>
+
+<p>
+Unlock Page Pro is built with an SEO-friendly structure that helps search engines understand the page content properly. 
+By using optimized headings, fast loading speed, mobile responsiveness, and clean HTML structure, this tool can improve your website ranking.
+</p>
+
+<h2>Best Use Cases</h2>
+
+<ul>
+<li>Protect Download Links</li>
+<li>Create VIP Access Pages</li>
+<li>Monetize File Sharing Websites</li>
+<li>Grow Social Media Followers</li>
+<li>Increase Ad Revenue</li>
+<li>Lock Premium Tutorials</li>
+<li>Secure External URLs</li>
+</ul>
+
+<h2>Conclusion</h2>
+
+<p>
+<b>Unlock Page Pro</b> is one of the best solutions for securing premium content and increasing online engagement. 
+Whether you want to lock files, protect URLs, or improve monetization, this tool provides everything in a modern and professional way.
+</p>
+
+<p>
+If you are searching for a reliable <b>content locker and unlock page solution</b>, Unlock Page Pro can help grow your website traffic, improve user interaction, and boost earnings efficiently.
+</p>
+</div>
+</main>
+
+<script>
+  // ---------- GLOBAL STATE ----------
+  let currentImageBase64 = "";
+  const DEFAULT_IMG = "https://i.imgur.com/4AiXzf8.jpeg";
+  
+  // extra steps array: each = { text: string, link: string }
+  let extraSteps = [];   // initially empty
+
+  // DOM elements (using new IDs)
+  const imageInput = document.getElementById("imageUploadInput");
+  const nameInput = document.getElementById("nameInputField");
+  const descInput = document.getElementById("descInputField");
+  const ads1Input = document.getElementById("ads1Text");
+  const ads2Input = document.getElementById("ads2Text");
+  const ads3Input = document.getElementById("ads3Text");
+  const ads1Link = document.getElementById("ads1LinkField");
+  const ads2Link = document.getElementById("ads2LinkField");
+  const ads3Link = document.getElementById("ads3LinkField");
+  const otherInput = document.getElementById("otherTextField");
+  const linkTextInput = document.getElementById("linkTextButtonField");
+  const finalLinkInput = document.getElementById("finalLinkField");
+  const textColorPicker = document.getElementById("textColorPicker");
+  const bgColorPicker = document.getElementById("bgColorPicker");
+  const extraContainer = document.getElementById("extraStepsContainer");
+
+  // helper: get image src
+  function getCurrentImage() { return currentImageBase64 || DEFAULT_IMG; }
+
+  // ---------- render extra step inputs inside generator ----------
+  function renderExtraInputs() {
+    extraContainer.innerHTML = "";
+    extraSteps.forEach((step, idx) => {
+      const stepDiv = document.createElement("div");
+      stepDiv.className = "extra-step-item";
+      const uniqueTextId = `extraText_${idx}`;
+      const uniqueLinkId = `extraLink_${idx}`;
+      stepDiv.innerHTML = `
+        <div class="extra-step-title">🔹 Extra Step ${idx+1}</div>
+        <div class="row-2col">
+          <div class="input-group"><label for="${uniqueTextId}">Button Text</label><input type="text" id="${uniqueTextId}" class="extra-text-input" data-idx="${idx}" value="${escapeHtml(step.text)}" placeholder="Extra step text"></div>
+          <div class="input-group"><label for="${uniqueLinkId}">Link URL</label><input type="text" id="${uniqueLinkId}" class="extra-link-input" data-idx="${idx}" value="${escapeHtml(step.link)}" placeholder="https://..."></div>
+        </div>
+      `;
+      extraContainer.appendChild(stepDiv);
+      // attach live events
+      const textInput = stepDiv.querySelector(`.extra-text-input`);
+      const linkInput = stepDiv.querySelector(`.extra-link-input`);
+      textInput.addEventListener("input", (e) => {
+        extraSteps[idx].text = e.target.value;
+        refreshLivePreview();
+      });
+      linkInput.addEventListener("input", (e) => {
+        extraSteps[idx].link = e.target.value;
+        refreshLivePreview();
+      });
+    });
+  }
+
+  // add extra step
+  function addExtraStep() {
+    extraSteps.push({ text: "EXTRA AD", link: "https://example.com/extra" });
+    renderExtraInputs();
+    refreshLivePreview();   // reset step completions in preview
+  }
+
+  // remove last extra step (only if exists)
+  function removeExtraStep() {
+    if (extraSteps.length > 0) {
+      extraSteps.pop();
+      renderExtraInputs();
+      refreshLivePreview();
+    }
+  }
+
+  // ----- build full step list (core 3 + extra) -----
+  function getAllSteps() {
+    const core = [
+      { text: ads1Input.value.trim() || "WATCH AD 1", link: ads1Link.value.trim() || "#" },
+      { text: ads2Input.value.trim() || "WATCH AD 2", link: ads2Link.value.trim() || "#" },
+      { text: ads3Input.value.trim() || "WATCH AD 3", link: ads3Link.value.trim() || "#" }
+    ];
+    const extra = extraSteps.map(s => ({ text: s.text || "Extra Step", link: s.link || "#" }));
+    return [...core, ...extra];
+  }
+
+  // ---------------- LIVE PREVIEW (FULLY FUNCTIONAL STEPS) ----------------
+  function refreshLivePreview() {
+    const container = document.getElementById("dynamicPreviewContainer");
+    if (!container) return;
+
+    const allSteps = getAllSteps();
+    const totalSteps = allSteps.length;
+    const name = nameInput.value.trim() || "Unlock Page";
+    const description = descInput.value.trim() || "Complete all steps";
+    const otherText = otherInput.value.trim() || "Earn with us";
+    const unlockBtnLabel = linkTextInput.value.trim() || "Get Your Link";
+    const finalUrl = finalLinkInput.value.trim() || "#";
+    const imageSrc = getCurrentImage();
+    const textColor = textColorPicker.value;
+    const bgColor = bgColorPicker.value;
+
+    // dynamic buttons HTML
+    let stepsHtml = "";
+    for (let i = 0; i < totalSteps; i++) {
+      const step = allSteps[i];
+      stepsHtml += `
+        <button class="step-btn" id="liveStep${i}" data-index="${i}" disabled>
+          <i class="fa-solid fa-play"></i> <span>${escapeHtml(step.text)}</span> <i class="fa-solid fa-angle-right"></i>
+        </button>
+      `;
+    }
+
+    const previewHTML = `
+      <div class="preview-logo"><img src="${imageSrc}" alt="User uploaded logo" onerror="this.src='${DEFAULT_IMG}'"></div>
+      <div class="preview-title">${escapeHtml(name)}</div>
+      <div class="preview-desc">${escapeHtml(description)}</div>
+      ${stepsHtml}
+      <div class="progress-area">
+        <h3>📊 Steps Completed <span id="stepCounterLive">0</span>/${totalSteps}</h3>
+        <div class="bar"><div class="fill" id="progressFillLive" style="width:0%"></div></div>
+      </div>
+      <button class="unlock-main-btn" id="liveUnlockBtn" disabled>
+        <i class="fa-solid fa-unlock-alt"></i> <span>${escapeHtml(unlockBtnLabel)}</span> <i class="fa-solid fa-arrow-right"></i>
+      </button>
+      <div class="bottom-other"><i class="fa-regular fa-gem"></i> ${escapeHtml(otherText)}</div>
+    `;
+
+    container.innerHTML = previewHTML;
+    container.style.background = bgColor;
+    container.style.color = textColor;
+
+    // step completion state
+    let completedCount = 0;
+    const stepButtons = [];
+    for (let i = 0; i < totalSteps; i++) {
+      const btn = document.getElementById(`liveStep${i}`);
+      if (btn) stepButtons.push(btn);
+    }
+    const unlockBtnLive = document.getElementById("liveUnlockBtn");
+    const counterSpan = document.getElementById("stepCounterLive");
+    const fillBar = document.getElementById("progressFillLive");
+
+    function updateUI() {
+      if (counterSpan) counterSpan.innerText = completedCount;
+      if (fillBar) fillBar.style.width = (completedCount / totalSteps) * 100 + "%";
+      if (unlockBtnLive) {
+        if (completedCount === totalSteps) {
+          unlockBtnLive.disabled = false;
+          unlockBtnLive.classList.add("active");
+        } else {
+          unlockBtnLive.disabled = true;
+          unlockBtnLive.classList.remove("active");
+        }
+      }
+    }
+
+    // initial states: first step active, others disabled
+    if (stepButtons.length > 0) {
+      stepButtons.forEach((btn, idx) => {
+        btn.disabled = true;
+        btn.classList.remove("active", "done");
+      });
+      if (stepButtons[0]) {
+        stepButtons[0].disabled = false;
+        stepButtons[0].classList.add("active");
+      }
+    }
+    completedCount = 0;
+    updateUI();
+
+    // attach event handlers for each step sequentially
+    function completeStep(btnIndex) {
+      const currentBtn = stepButtons[btnIndex];
+      if (!currentBtn || currentBtn.disabled === true || currentBtn.classList.contains("done")) return;
+      const currentStepsData = getAllSteps();
+      const stepLink = currentStepsData[btnIndex]?.link || "#";
+      if (stepLink && stepLink !== "#") window.open(stepLink, "_blank");
+      currentBtn.classList.remove("active");
+      currentBtn.classList.add("done");
+      currentBtn.disabled = true;
+      completedCount++;
+      updateUI();
+      const nextBtn = stepButtons[btnIndex + 1];
+      if (nextBtn) {
+        nextBtn.disabled = false;
+        nextBtn.classList.add("active");
+      }
+    }
+
+    for (let i = 0; i < stepButtons.length; i++) {
+      const btn = stepButtons[i];
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (!btn.disabled && !btn.classList.contains("done")) {
+          completeStep(i);
+        }
+      });
+    }
+
+    if (unlockBtnLive) {
+      unlockBtnLive.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (completedCount === totalSteps) {
+          const finalDest = finalLinkInput.value.trim();
+          if (finalDest && finalDest !== "#") {
+            window.location.href = finalDest;
+          } else {
+            alert("⚠️ Set a valid final redirect link in generator.");
+          }
+        } else {
+          alert(`⚠️ Complete all ${totalSteps - completedCount} remaining step(s) first.`);
+        }
+      });
+    }
+  }
+
+  // -------------- GENERATE FINAL HTML CODE (with dynamic steps + colors) --------------
+  function generateFullCode() {
+    const allSteps = getAllSteps();
+    const totalStepsCount = allSteps.length;
+    const name = nameInput.value.trim() || "Unlock Page";
+    const desc = descInput.value.trim() || "Complete steps to unlock";
+    const otherText = otherInput.value.trim() || "Earn with us";
+    const linkBtnText = linkTextInput.value.trim() || "Get Your Link";
+    const finalUrl = finalLinkInput.value.trim() || "#";
+    const imageSrc = getCurrentImage();
+    const textColor = textColorPicker.value;
+    const bgColor = bgColorPicker.value;
+
+    const stepsArrayForJs = allSteps.map(step => ({
+      text: step.text,
+      link: step.link
+    }));
+    const stepsJson = JSON.stringify(stepsArrayForJs);
+
+    const generatedHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>${escapeHtml(name)} | Unlock Content</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif;}
+    body{background:#000;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px;}
+    .unlock-card{max-width:650px;width:100%;background:${bgColor};color:${textColor};border-radius:48px;padding:32px 24px;text-align:center;border:1px solid #2c2c34;box-shadow:0 25px 40px rgba(0,0,0,0.5);}
+    .logo-img{width:130px;height:130px;margin:0 auto 20px;border-radius:50%;overflow:hidden;border:3px solid #ffffffcc;background:#1e1e2a;}
+    .logo-img img{width:100%;height:100%;object-fit:cover;}
+    h1{font-size:2.1rem;margin-top:8px;background:linear-gradient(135deg,#fff,#b0c4ff);background-clip:text;-webkit-background-clip:text;color:transparent;}
+    .desc{opacity:0.9;margin:12px 0 25px;font-size:1rem;}
+    .step-btn{width:100%;height:58px;margin-top:12px;border:none;border-radius:44px;background:#26262e;color:#e2e2e2;font-size:1rem;font-weight:bold;display:flex;align-items:center;justify-content:space-between;padding:0 22px;cursor:pointer;transition:0.2s;}
+    .step-btn.active{background:#2563eb;color:white;}
+    .step-btn.done{background:#16a34a;color:white;cursor:default;}
+    .step-btn:disabled{opacity:0.5;cursor:not-allowed;}
+    .progress-sec{margin:22px 0 20px;}
+    .bar-bg{width:100%;height:8px;background:#2c2c34;border-radius:20px;margin-top:10px;overflow:hidden;}
+    .bar-fill{width:0%;height:100%;background:#3b82f6;transition:width 0.25s;}
+    .unlock-btn{width:100%;height:70px;background:#3a3a48;border:none;border-radius:50px;font-size:1.2rem;font-weight:800;display:flex;align-items:center;justify-content:space-between;padding:0 28px;color:#aaa;cursor:not-allowed;margin-top:12px;}
+    .unlock-btn.active{background:#0d6efd;color:white;cursor:pointer;}
+    .footer-txt{margin-top:28px;background:#1a1a22;padding:10px;border-radius:60px;font-size:0.9rem;}
+    i{font-size:1.2rem;}
+  </style>
+</head>
+<body>
+<main>
+<div class="unlock-card">
+  <div class="logo-img"><img src="${imageSrc}" alt="logo" onerror="this.src='${DEFAULT_IMG}'"></div>
+  <h1>${escapeHtml(name)}</h1>
+  <div class="desc">${escapeHtml(desc)}</div>
+  <div id="dynamicStepsContainer"></div>
+  <div class="progress-sec"><h3>📊 Steps Completed <span id="stepCountGen">0</span>/${totalStepsCount}</h3><div class="bar-bg"><div class="bar-fill" id="progressFillGen"></div></div></div>
+  <button class="unlock-btn" id="finalUnlockGen"><i class="fa-solid fa-unlock"></i> <span>${escapeHtml(linkBtnText)}</span> <i class="fa-solid fa-arrow-right"></i></button>
+  <div class="footer-txt"><i class="fa-regular fa-star"></i> ${escapeHtml(otherText)}</div>
+</div>
+</main>
+<script>
+  const stepsData = ${stepsJson};
+  let completed = 0;
+  const container = document.getElementById("dynamicStepsContainer");
+  function renderSteps() {
+    container.innerHTML = "";
+    stepsData.forEach((step, idx) => {
+      const btn = document.createElement("button");
+      btn.className = "step-btn";
+      if(idx === 0) btn.classList.add("active");
+      btn.disabled = idx !== 0;
+      btn.innerHTML = \`<i class="fa-solid fa-play"></i> <span>\${escapeHtmlGen(step.text)}</span> <i class="fa-solid fa-angle-right"></i>\`;
+      btn.setAttribute("data-idx", idx);
+      container.appendChild(btn);
+    });
+    attachEvents();
+    updateProgressUI();
+  }
+  function escapeHtmlGen(str) { if(!str) return ""; return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+  function updateProgressUI() { document.getElementById("stepCountGen").innerText = completed; const percent = (completed / stepsData.length) * 100; document.getElementById("progressFillGen").style.width = percent + "%"; const unlockBtn = document.getElementById("finalUnlockGen"); if(completed === stepsData.length) { unlockBtn.disabled = false; unlockBtn.classList.add("active"); } else { unlockBtn.disabled = true; unlockBtn.classList.remove("active"); } }
+  function attachEvents() {
+    const btns = document.querySelectorAll("#dynamicStepsContainer .step-btn");
+    btns.forEach((btn, i) => {
+      btn.addEventListener("click", () => {
+        if(btn.disabled || btn.classList.contains("done")) return;
+        const stepLink = stepsData[i].link;
+        if(stepLink && stepLink !== "#") window.open(stepLink, "_blank");
+        btn.classList.remove("active");
+        btn.classList.add("done");
+        btn.disabled = true;
+        completed++;
+        updateProgressUI();
+        if(btns[i+1]) {
+          btns[i+1].disabled = false;
+          btns[i+1].classList.add("active");
+        }
+      });
+    });
+  }
+  document.getElementById("finalUnlockGen").addEventListener("click", () => {
+    if(completed === stepsData.length) {
+      window.location.href = "${finalUrl}";
+    } else alert("Complete all steps first!");
+  });
+  renderSteps();
+<\/script>
+</body>
+</html>`;
+    document.getElementById("codeOutput").value = generatedHTML;
+  }
+
+  function copyFinalCode() {
+    const codeArea = document.getElementById("codeOutput");
+    if (!codeArea.value.trim()) { alert("Generate code first!"); return; }
+    codeArea.select();
+    navigator.clipboard.writeText(codeArea.value);
+    alert("✅ HTML code copied!");
+  }
+
+  function escapeHtml(str) {
+    if (!str) return "";
+    return str.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    });
+  }
+
+  // event listeners for main inputs + color
+  const allTextInputs = [nameInput, descInput, ads1Input, ads2Input, ads3Input, ads1Link, ads2Link, ads3Link, otherInput, linkTextInput, finalLinkInput];
+  allTextInputs.forEach(inp => inp.addEventListener("input", () => refreshLivePreview()));
+  textColorPicker.addEventListener("input", () => refreshLivePreview());
+  bgColorPicker.addEventListener("input", () => refreshLivePreview());
+  imageInput.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (ev) => { currentImageBase64 = ev.target.result; refreshLivePreview(); };
+      reader.readAsDataURL(file);
+    } else { currentImageBase64 = ""; refreshLivePreview(); }
+  });
+
+  // extra step buttons
+  document.getElementById("addExtraStepBtn").addEventListener("click", addExtraStep);
+  document.getElementById("removeExtraStepBtn").addEventListener("click", removeExtraStep);
+
+  // initialize
+  function init() {
+    renderExtraInputs();
+    refreshLivePreview();
+  }
+  init();
+</script>
+</body>
+</html>
