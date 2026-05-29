@@ -157,7 +157,6 @@
     margin-bottom:20px;
     text-align:center;
 }
-
 #main .container table{
     width:100%;
     border-collapse:collapse;
@@ -165,26 +164,21 @@
     overflow:hidden;
     border-radius:10px;
 }
-
 table th,
 table td{
     border:1px solid #ccc;
     padding:18px;
     font-size:20px;
 }
-
 .pass{
     background:#9be58e;
     font-weight:bold;
 }
-
 .fail{
     background:#ffb3b3;
     font-weight:bold;
 }
-
 @media(max-width:600px){
-
     h1{
         font-size:30px;
     }
@@ -192,11 +186,9 @@ table td{
     .card h2{
         font-size:25px;
     }
-
     .preview .large{
         font-size:38px;
     }
-
     table th,
     table td{
         font-size:16px;
@@ -229,39 +221,27 @@ table td{
         <h2>Foreground Color</h2>
 
         <div class="controls">
-            <!-- HEX input with associated label -->
             <div class="input-group">
                 <label for="fgHex">Hex</label>
                 <input type="text" id="fgHex" value="#FFFFFF">
             </div>
-            <!-- RGB readonly with associated label -->
             <div class="input-group">
                 <label for="fgRgb">RGB</label>
                 <input type="text" id="fgRgb" readonly>
             </div>
-            <!-- Color picker with associated label -->
             <div class="input-group">
                 <label for="fgColor">Color</label>
                 <input type="color" id="fgColor" value="#ffffff" class="color-box">
             </div>
-            <!-- Select dropdown with associated label -->
             <div class="input-group">
                 <label for="fgName">Name</label>
                 <select id="fgName">
-                    <option value="#ffffff">White</option>
-                    <option value="#000000">Black</option>
-                    <option value="#ff0000">Red</option>
-                    <option value="#00ff00">Lime</option>
-                    <option value="#0000ff">Blue</option>
-                    <option value="#ffff00">Yellow</option>
-                    <option value="#ff00ff">Magenta</option>
-                    <option value="#00ffff">Cyan</option>
+                    <!-- Options will be populated dynamically -->
                 </select>
             </div>
         </div>
 
         <div class="range-box">
-            <!-- Associated label for range slider (Accessibility fix) -->
             <label for="fgLight">Adjust Lightness : <span id="fgLightText">100</span>%</label>
             <input type="range" id="fgLight" min="0" max="100" value="100" class="range-retro">
         </div>
@@ -274,39 +254,27 @@ table td{
         <h2>Background Color</h2>
 
         <div class="controls">
-            <!-- HEX input with associated label -->
             <div class="input-group">
                 <label for="bgHex">Hex</label>
                 <input type="text" id="bgHex" value="#000000">
             </div>
-            <!-- RGB readonly with associated label -->
             <div class="input-group">
                 <label for="bgRgb">RGB</label>
                 <input type="text" id="bgRgb" readonly>
             </div>
-            <!-- Color picker with associated label -->
             <div class="input-group">
                 <label for="bgColor">Color</label>
                 <input type="color" id="bgColor" value="#000000" class="color-box">
             </div>
-            <!-- Select dropdown with associated label -->
             <div class="input-group">
                 <label for="bgName">Name</label>
                 <select id="bgName">
-                    <option value="#000000">Black</option>
-                    <option value="#ffffff">White</option>
-                    <option value="#ff0000">Red</option>
-                    <option value="#00ff00">Lime</option>
-                    <option value="#0000ff">Blue</option>
-                    <option value="#ffff00">Yellow</option>
-                    <option value="#ff00ff">Magenta</option>
-                    <option value="#00ffff">Cyan</option>
+                    <!-- Options will be populated dynamically -->
                 </select>
             </div>
         </div>
 
         <div class="range-box">
-            <!-- Associated label for range slider (Accessibility fix) -->
             <label for="bgLight">Adjust Lightness : <span id="bgLightText">0</span>%</label>
             <input type="range" id="bgLight" min="0" max="100" value="0" class="range-retro">
         </div>
@@ -362,41 +330,30 @@ In modern web design, accessibility plays a very important role. A website shoul
 <p>
 A <strong>Color Contrast Analyzer Tool</strong> helps developers and designers check whether their color combinations meet the official <strong>WCAG (Web Content Accessibility Guidelines)</strong> standards.
 </p>
-
 <hr>
-
 <h2>What Is a Color Contrast Analyzer?</h2>
-
 <p>
 A Color Contrast Analyzer is a web-based tool that measures the contrast ratio between foreground and background colors. It helps determine whether the text is readable enough for users with low vision or color blindness.
 </p>
-
 <p>
 The tool compares two colors and generates a contrast ratio such as:
 </p>
-
 <ul>
 <li><strong>4.5:1</strong></li>
 <li><strong>7:1</strong></li>
 <li><strong>21:1</strong></li>
 </ul>
-
 <p>
 The higher the contrast ratio, the better the readability.
 </p>
-
 <hr>
-
 <h2>Why Color Contrast Matters in Web Design?</h2>
-
 <p>
 Poor color contrast can make websites difficult to read, especially for users with visual disabilities. If text blends into the background, visitors may leave your website quickly.
 </p>
-
 <p>
 Good color contrast improves:
 </p>
-
 <ul>
 <li>Website Accessibility</li>
 <li>User Experience</li>
@@ -404,114 +361,80 @@ Good color contrast improves:
 <li>SEO Performance</li>
 <li>Professional Design Quality</li>
 </ul>
-
 <p>
 Search engines like <strong>Google</strong> prefer websites that provide a better user experience and accessibility compliance.
 </p>
-
 <hr>
-
 <h2>Features of the Color Contrast Analyzer Tool</h2>
-
 <h3>1. HEX Color Support</h3>
-
 <p>
 Users can enter HEX color codes like:
 </p>
-
 <ul>
 <li><code>#FFFFFF</code></li>
 <li><code>#000000</code></li>
 <li><code>#FF5733</code></li>
 </ul>
-
 <h3>2. RGB Color Detection</h3>
-
 <p>
 The tool automatically converts selected colors into RGB format.
 </p>
-
 <h3>3. Live Color Preview</h3>
-
 <p>
 Users can instantly preview text and background color combinations.
 </p>
-
 <h3>4. Contrast Ratio Calculator</h3>
-
 <p>
 The tool calculates the exact contrast ratio between two colors in real time.
 </p>
-
 <h3>5. WCAG Compliance Checker</h3>
-
 <p>
 It checks whether the selected colors pass:
 </p>
-
 <ul>
 <li><strong>WCAG AA</strong></li>
 <li><strong>WCAG AAA</strong></li>
 </ul>
-
 <h3>6. Adjustable Brightness Slider</h3>
-
 <p>
 Users can adjust brightness and test different shades easily.
 </p>
-
 <hr>
-
 <h2>WCAG Contrast Ratio Standards</h2>
-
 <p>
 The <strong>Web Content Accessibility Guidelines (WCAG)</strong> define minimum contrast requirements for readable content.
 </p>
-
 <table border="1" cellpadding="10" cellspacing="0" width="100%">
 <tr>
 <th>WCAG Standard</th>
 <th>Small Text</th>
 <th>Large Text</th>
 </tr>
-
 <tr>
 <td><strong>AA</strong></td>
 <td>4.5:1</td>
 <td>3:1</td>
 </tr>
-
 <tr>
 <td><strong>AAA</strong></td>
 <td>7:1</td>
 <td>4.5:1</td>
 </tr>
 </table>
-
 <hr>
-
 <h2>Benefits of Using a Color Contrast Checker</h2>
-
 <ul>
 <li><strong>Better Accessibility:</strong> Makes websites usable for visually impaired users.</li>
-
 <li><strong>Improved SEO:</strong> Accessible websites often rank better in search engines.</li>
-
 <li><strong>Enhanced User Experience:</strong> Readable content keeps visitors engaged longer.</li>
-
 <li><strong>Professional UI Design:</strong> Proper contrast creates cleaner and modern designs.</li>
-
 <li><strong>Legal Compliance:</strong> Many countries require websites to follow accessibility standards.</li>
 </ul>
-
 <hr>
-
 <h2>Who Should Use This Tool?</h2>
-
 <p>
 This tool is useful for:
 </p>
-
 <ul>
 <li>Web Developers</li>
 <li>UI/UX Designers</li>
@@ -521,11 +444,8 @@ This tool is useful for:
 <li>Accessibility Testers</li>
 <li>WordPress Developers</li>
 </ul>
-
 <hr>
-
 <h2>How to Use the Color Contrast Analyzer</h2>
-
 <ol>
 <li>Select a foreground color.</li>
 <li>Select a background color.</li>
@@ -534,39 +454,28 @@ This tool is useful for:
 <li>Verify WCAG AA and AAA results.</li>
 <li>Adjust brightness if needed.</li>
 </ol>
-
 <p>
 The tool instantly tells whether your selected color combination passes accessibility guidelines.
 </p>
-
 <hr>
-
 <h2>Best Practices for Accessible Color Design</h2>
-
 <h3>Use Dark Text on Light Backgrounds</h3>
-
 <p>
 Dark text on light backgrounds usually provides better readability.
 </p>
-
 <h3>Avoid Low Contrast Colors</h3>
-
 <p>
 Avoid combinations like:
 </p>
-
 <ul>
 <li>Light Gray on White</li>
 <li>Yellow on White</li>
 <li>Blue on Black</li>
 </ul>
-
 <h3>Test Every Important Element</h3>
-
 <p>
 Always test:
 </p>
-
 <ul>
 <li>Buttons</li>
 <li>Navigation Menus</li>
@@ -574,19 +483,14 @@ Always test:
 <li>Paragraph Text</li>
 <li>Forms</li>
 </ul>
-
 <hr>
-
 <h2>Why Developers Love This Tool</h2>
-
 <p>
 Developers prefer lightweight tools that work directly in the browser without external libraries.
 </p>
-
 <p>
 A JavaScript-based Color Contrast Analyzer is:
 </p>
-
 <ul>
 <li>Fast</li>
 <li>Responsive</li>
@@ -594,26 +498,21 @@ A JavaScript-based Color Contrast Analyzer is:
 <li>Easy to Use</li>
 <li>Beginner Friendly</li>
 </ul>
-
 <hr>
-
 <h2>Final Thoughts</h2>
-
 <p>
 A <strong>Color Contrast Analyzer Tool</strong> is an essential utility for modern web development. It helps ensure websites remain accessible, readable, and compliant with WCAG standards.
 </p>
-
 <p>
 By maintaining proper contrast ratios, you improve usability for all visitors while also enhancing SEO performance and overall design quality.
 </p>
-
 <p>
 If you are building a developer tools website, adding a professional accessibility checker like this can increase engagement and help your website rank better in Google search results.
 </p>
 </div>
 </main>
 <script>
-
+// Get DOM elements
 const fgColor = document.getElementById("fgColor");
 const bgColor = document.getElementById("bgColor");
 
@@ -635,70 +534,50 @@ const bgLightText = document.getElementById("bgLightText");
 const preview = document.getElementById("preview");
 const ratioText = document.getElementById("ratio");
 
+// Basic color utility functions
 function hexToRgb(hex){
-
     hex = hex.replace("#","");
-
     let r = parseInt(hex.substring(0,2),16);
     let g = parseInt(hex.substring(2,4),16);
     let b = parseInt(hex.substring(4,6),16);
-
     return {r,g,b};
 }
 
 function rgbToHex(r,g,b){
-
-    return "#" + [r,g,b]
-    .map(x => {
+    return "#" + [r,g,b].map(x => {
         const hex = x.toString(16);
         return hex.length === 1 ? "0"+hex : hex;
     }).join("");
 }
 
 function adjustLightness(hex, percent){
-
     let {r,g,b} = hexToRgb(hex);
-
     r = Math.round(r * percent / 100);
     g = Math.round(g * percent / 100);
     b = Math.round(b * percent / 100);
-
     return rgbToHex(r,g,b);
 }
 
 function luminance(r,g,b){
-
     let a = [r,g,b].map(v => {
-
         v /= 255;
-
-        return v <= 0.03928
-        ? v / 12.92
-        : Math.pow((v + 0.055)/1.055, 2.4);
-
+        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055)/1.055, 2.4);
     });
-
     return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
 }
 
 function contrastRatio(hex1, hex2){
-
     const c1 = hexToRgb(hex1);
     const c2 = hexToRgb(hex2);
-
     const l1 = luminance(c1.r,c1.g,c1.b);
     const l2 = luminance(c2.r,c2.g,c2.b);
-
     const brightest = Math.max(l1,l2);
     const darkest = Math.min(l1,l2);
-
     return ((brightest + 0.05) / (darkest + 0.05)).toFixed(2);
 }
 
 function setPassFail(id, pass){
-
     const el = document.getElementById(id);
-
     if(pass){
         el.innerHTML = "Pass";
         el.className = "pass";
@@ -708,8 +587,8 @@ function setPassFail(id, pass){
     }
 }
 
+// Core function to update the entire UI
 function update(){
-
     let fg = adjustLightness(fgColor.value, fgLight.value);
     let bg = adjustLightness(bgColor.value, bgLight.value);
 
@@ -718,7 +597,6 @@ function update(){
 
     let fgRGB = hexToRgb(fg);
     let bgRGB = hexToRgb(bg);
-
     fgRgb.value = `${fgRGB.r}, ${fgRGB.g}, ${fgRGB.b}`;
     bgRgb.value = `${bgRGB.r}, ${bgRGB.g}, ${bgRGB.b}`;
 
@@ -726,12 +604,10 @@ function update(){
     preview.style.background = bg;
 
     const ratio = parseFloat(contrastRatio(fg,bg));
-
     ratioText.innerText = ratio.toFixed(2);
 
     setPassFail("aaSmall", ratio >= 4.5);
     setPassFail("aaLarge", ratio >= 3);
-
     setPassFail("aaaSmall", ratio >= 7);
     setPassFail("aaaLarge", ratio >= 4.5);
 
@@ -739,41 +615,122 @@ function update(){
     bgLightText.innerText = bgLight.value;
 }
 
+// Complete list of color names with their hex values (provided by user)
+const allColorDefinitions = [
+    { name: "Alice Blue", hex: "#f0f8ff" }, { name: "Antique White", hex: "#faebd7" }, { name: "Aqua", hex: "#00ffff" },
+    { name: "Aquamarine", hex: "#7fffd4" }, { name: "Azure", hex: "#f0ffff" }, { name: "Beige", hex: "#f5f5dc" },
+    { name: "Bisque", hex: "#ffe4c4" }, { name: "Black", hex: "#000000" }, { name: "Blanched Almond", hex: "#ffebcd" },
+    { name: "Blue", hex: "#0000ff" }, { name: "Blue Violet", hex: "#8a2be2" }, { name: "Brown", hex: "#a52a2a" },
+    { name: "Burly Wood", hex: "#deb887" }, { name: "Cadet Blue", hex: "#5f9ea0" }, { name: "Chartreuse", hex: "#7fff00" },
+    { name: "Chocolate", hex: "#d2691e" }, { name: "Coral", hex: "#ff7f50" }, { name: "Cornflower Blue", hex: "#6495ed" },
+    { name: "Cornsilk", hex: "#fff8dc" }, { name: "Crimson", hex: "#dc143c" }, { name: "Cyan", hex: "#00ffff" },
+    { name: "Dark Blue", hex: "#00008b" }, { name: "Dark Cyan", hex: "#008b8b" }, { name: "Dark Goldenrod", hex: "#b8860b" },
+    { name: "Dark Gray", hex: "#a9a9a9" }, { name: "Dark Green", hex: "#006400" }, { name: "Dark Grey", hex: "#a9a9a9" },
+    { name: "Dark Khaki", hex: "#bdb76b" }, { name: "Dark Magenta", hex: "#8b008b" }, { name: "Dark Olive Green", hex: "#556b2f" },
+    { name: "Dark Orange", hex: "#ff8c00" }, { name: "Dark Orchid", hex: "#9932cc" }, { name: "Dark Red", hex: "#8b0000" },
+    { name: "Dark Salmon", hex: "#e9967a" }, { name: "Dark Sea Green", hex: "#8fbc8f" }, { name: "Dark Slate Blue", hex: "#483d8b" },
+    { name: "Dark Slate Gray", hex: "#2f4f4f" }, { name: "Dark Turquoise", hex: "#00ced1" }, { name: "Dark Violet", hex: "#9400d3" },
+    { name: "Deep Pink", hex: "#ff1493" }, { name: "Deep Sky Blue", hex: "#00bfff" }, { name: "Dim Gray", hex: "#696969" },
+    { name: "Dodger Blue", hex: "#1e90ff" }, { name: "Firebrick", hex: "#b22222" }, { name: "Floral White", hex: "#fffaf0" },
+    { name: "Forest Green", hex: "#228b22" }, { name: "Fuchsia", hex: "#ff00ff" }, { name: "Gainsboro", hex: "#dcdcdc" },
+    { name: "Ghost White", hex: "#f8f8ff" }, { name: "Gold", hex: "#ffd700" }, { name: "Goldenrod", hex: "#daa520" },
+    { name: "Gray", hex: "#808080" }, { name: "Green", hex: "#008000" }, { name: "Green Yellow", hex: "#adff2f" },
+    { name: "Grey", hex: "#808080" }, { name: "Honeydew", hex: "#f0fff0" }, { name: "Hot Pink", hex: "#ff69b4" },
+    { name: "Indian Red", hex: "#cd5c5c" }, { name: "Indigo", hex: "#4b0082" }, { name: "Ivory", hex: "#fffff0" },
+    { name: "Khaki", hex: "#f0e68c" }, { name: "Lavender", hex: "#e6e6fa" }, { name: "Lavender Blush", hex: "#fff0f5" },
+    { name: "Lawn Green", hex: "#7cfc00" }, { name: "Lemon Chiffon", hex: "#fffacd" }, { name: "Light Blue", hex: "#add8e6" },
+    { name: "Light Coral", hex: "#f08080" }, { name: "Light Cyan", hex: "#e0ffff" }, { name: "Light Goldenrod Yellow", hex: "#fafad2" },
+    { name: "Light Gray", hex: "#d3d3d3" }, { name: "Light Green", hex: "#90ee90" }, { name: "Light Grey", hex: "#d3d3d3" },
+    { name: "Light Pink", hex: "#ffb6c1" }, { name: "Light Salmon", hex: "#ffa07a" }, { name: "Light Sea Green", hex: "#20b2aa" },
+    { name: "Light Sky Blue", hex: "#87cefa" }, { name: "Light Slate Gray", hex: "#778899" }, { name: "Light Steel Blue", hex: "#b0c4de" },
+    { name: "Light Yellow", hex: "#ffffe0" }, { name: "Lime", hex: "#00ff00" }, { name: "Lime Green", hex: "#32cd32" },
+    { name: "Linen", hex: "#faf0e6" }, { name: "Magenta", hex: "#ff00ff" }, { name: "Maroon", hex: "#800000" },
+    { name: "Medium Aquamarine", hex: "#66cdaa" }, { name: "Medium Blue", hex: "#0000cd" }, { name: "Medium Orchid", hex: "#ba55d3" },
+    { name: "Medium Purple", hex: "#9370db" }, { name: "Medium Sea Green", hex: "#3cb371" }, { name: "Medium Slate Blue", hex: "#7b68ee" },
+    { name: "Medium Spring Green", hex: "#00fa9a" }, { name: "Medium Turquoise", hex: "#48d1cc" }, { name: "Medium Violet Red", hex: "#c71585" },
+    { name: "Midnight Blue", hex: "#191970" }, { name: "Mint Cream", hex: "#f5fffa" }, { name: "Misty Rose", hex: "#ffe4e1" },
+    { name: "Moccasin", hex: "#ffe4b5" }, { name: "Navajo White", hex: "#ffdead" }, { name: "Navy", hex: "#000080" },
+    { name: "Old Lace", hex: "#fdf5e6" }, { name: "Olive", hex: "#808000" }, { name: "Olive Drab", hex: "#6b8e23" },
+    { name: "Orange", hex: "#ffa500" }, { name: "Orange Red", hex: "#ff4500" }, { name: "Orchid", hex: "#da70d6" },
+    { name: "Pale Goldenrod", hex: "#eee8aa" }, { name: "Pale Green", hex: "#98fb98" }, { name: "Pale Turquoise", hex: "#afeeee" },
+    { name: "Pale Violet Red", hex: "#db7093" }, { name: "Papaya Whip", hex: "#ffefd5" }, { name: "Peach Puff", hex: "#ffdab9" },
+    { name: "Peru", hex: "#cd853f" }, { name: "Pink", hex: "#ffc0cb" }, { name: "Plum", hex: "#dda0dd" },
+    { name: "Powder Blue", hex: "#b0e0e6" }, { name: "Purple", hex: "#800080" }, { name: "Rebecca Purple", hex: "#663399" },
+    { name: "Red", hex: "#ff0000" }, { name: "Rosy Brown", hex: "#bc8f8f" }, { name: "Royal Blue", hex: "#4169e1" },
+    { name: "Saddle Brown", hex: "#8b4513" }, { name: "Salmon", hex: "#fa8072" }, { name: "Sandy Brown", hex: "#f4a460" },
+    { name: "Sea Green", hex: "#2e8b57" }, { name: "Sea Shell", hex: "#fff5ee" }, { name: "Sienna", hex: "#a0522d" },
+    { name: "Silver", hex: "#c0c0c0" }, { name: "Sky Blue", hex: "#87ceeb" }, { name: "Slate Blue", hex: "#6a5acd" },
+    { name: "Slate Gray", hex: "#708090" }, { name: "Snow", hex: "#fffafa" }, { name: "Spring Green", hex: "#00ff7f" },
+    { name: "Steel Blue", hex: "#4682b4" }, { name: "Tan", hex: "#d2b48c" }, { name: "Teal", hex: "#008080" },
+    { name: "Thistle", hex: "#d8bfd8" }, { name: "Tomato", hex: "#ff6347" }, { name: "Turquoise", hex: "#40e0d0" },
+    { name: "Violet", hex: "#ee82ee" }, { name: "Wheat", hex: "#f5deb3" }, { name: "White", hex: "#ffffff" },
+    { name: "White Smoke", hex: "#f5f5f5" }, { name: "Yellow", hex: "#ffff00" }, { name: "Yellow Green", hex: "#9acd32" }
+];
+
+// Populate both dropdowns with the full color list
+function populateColorDropdowns() {
+    // Clear existing options
+    fgName.innerHTML = '';
+    bgName.innerHTML = '';
+
+    // Loop through all colors and add options to both selects
+    allColorDefinitions.forEach(color => {
+        const optionFg = document.createElement('option');
+        optionFg.value = color.hex;
+        optionFg.textContent = color.name;
+        fgName.appendChild(optionFg);
+
+        const optionBg = document.createElement('option');
+        optionBg.value = color.hex;
+        optionBg.textContent = color.name;
+        bgName.appendChild(optionBg);
+    });
+
+    // Set default selections: foreground white, background black
+    fgName.value = "#ffffff";
+    bgName.value = "#000000";
+}
+
+// Initialize event listeners and default values
+function initFullTool() {
+    populateColorDropdowns();
+    
+    // Sync color pickers with default names
+    fgColor.value = "#ffffff";
+    bgColor.value = "#000000";
+    fgLight.value = "100";
+    bgLight.value = "0";
+    
+    // Force initial UI update
+    update();
+}
+
+// Attach event listeners (preserve original behavior)
 fgColor.addEventListener("input", update);
 bgColor.addEventListener("input", update);
-
 fgLight.addEventListener("input", update);
 bgLight.addEventListener("input", update);
 
+// Dropdown changes update the color picker and refresh UI
 fgName.addEventListener("change", ()=>{
-
     fgColor.value = fgName.value;
     update();
-
 });
-
 bgName.addEventListener("change", ()=>{
-
     bgColor.value = bgName.value;
     update();
-
 });
-
 fgHex.addEventListener("change", ()=>{
-
     fgColor.value = fgHex.value;
     update();
-
 });
-
 bgHex.addEventListener("change", ()=>{
-
     bgColor.value = bgHex.value;
     update();
-
 });
 
-update();
+// Start the tool
+initFullTool();
 
 </script>
 
